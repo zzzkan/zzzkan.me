@@ -1,10 +1,10 @@
 {
   "private": true,
-  "name": "@zzzkan/gatsby-starter-blog",
+  "name": "blog.zzzkan.me",
   "version": "1.0.0",
-  "description": "Gatsby starter using @zzzkan/gatsby-theme-blog",
+  "description": "zzzkan's blog",
   "author": "zzzkan <zzz602214076@outlook.com>",
-  "license": "0BSD",
+  "license": "MIT",
   "keywords": [
     "gatsby",
     "gatsby-starter",

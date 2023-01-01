@@ -2,22 +2,22 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "@zzzkan/gatsby-starter-blog",
-    siteUrl: "https://zzzkan-gatsby-starter-blog.netlify.app/",
-    description: "gatsby-starter-blog by @zzzkan.",
+    title: "blog.zzzkan.me",
+    siteUrl: "https://blog.zzzkan.me/",
+    description: "zzzkan's blog",
     author: "zzzkan",
     publicationYear: 2023,
-    imageUrl: "https://zzzkan-gatsby-starter-blog.netlify.app/banner.png",
+    imageUrl: "https://blog.zzzkan.me/banner.png",
   },
   graphqlTypegen: true,
   plugins: [
     {
       resolve: "@zzzkan/gatsby-theme-blog",
       options: {
-        lang: "en",
+        lang: "ja",
         basePath: "/",
         contentPath: "contents/posts",
-        dateFormatString: "MMMM DD, YYYY",
+        dateFormatString: "YYYY/MM/DD",
         links: [
           {
             name: "Profile",
@@ -43,8 +43,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "zzzkan-blog - @zzzkan/gatsby-starter-blog",
-        short_name: "zzzkan-blog",
+        name: "blog.zzzkan.me",
+        short_name: "blog.zzzkan.me",
         start_url: "/",
         background_color: "#fff",
         display: "minimal-ui",
