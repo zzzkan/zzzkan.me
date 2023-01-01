@@ -1,7 +1,7 @@
 ---
 slug: create-new-blog
 title: 個人ブログを作った🐰
-publishedDate: 2023-01-01
+publishedDate: 2023-01-02
 featuredImage: ./thumbnail.png
 tags:
   - 雑記
