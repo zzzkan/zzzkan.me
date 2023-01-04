@@ -1,5 +1,5 @@
 <h1 align="center">
-   blog.zzzkan.me
+  pages test
 </h1>
 <p align="center">
   <a href="https://github.com/zzzkan/blog.zzzkan.me/actions/workflows/textlint.yml">
