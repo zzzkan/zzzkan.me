@@ -2,6 +2,7 @@
 slug: cloudflare-pages-node-v18
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
+updatedDate: 2023-01-04
 featuredImage: ./thumbnail.png
 tags:
   - CloudflarePages
@@ -33,20 +34,20 @@ tags:
 
 [Build configuration · Cloudflare Pages docs](https://developers.cloudflare.com/pages/platform/build-configuration)
 
-Node 18 への対応は次期ビルドイメージで対応される予定のようです。次期ビルドイメージについては[Build Image Update · Discussion #1 · cloudflare/pages-build-image](https://github.com/cloudflare/pages-build-image/discussions/1)で議論されているようです。
+Node 18 への対応は次期ビルドイメージで対応される予定のようです。次期ビルドイメージについては[Build Image Update · Discussion #1 · cloudflare/pages-build-image](https://github.com/cloudflare/pages-build-image/discussions/1)で議論されています。
 
 ## GitHub Actions でビルドする
 
-現状 Cloudflare Pages ではビルドできないことがわかりました。ただ、次期ビルドイメージがリリースされるのを待つわけにもいきません。なので GitHub Actions でビルドすることにしました。
+現状 Cloudflare Pages ではビルドできないことがわかりました。ただ、次期ビルドイメージがリリースされるのを待つわけにもいかないです。なので GitHub Actions でビルドすることにします。
 
 幸いにも [Cloudflare 公式の Action](https://github.com/marketplace/actions/cloudflare-pages-github-action) があったので今回はこちらを利用しました。基本的な使い方は Action の Readme に記載されているのでここでは割愛します。
 
-Action 導入後、Cloudflare Pages 側での自動デプロイは不要となるためオフにしておきます。具体的には\[Setting\]>\[Builds & deployments\]>\[Branch deployments\]で\[Automatic deployments\]を\[Disabled\]に設定します。
+Action 導入後、Cloudflare Pages 側での自動デプロイは不要となるためオフにしておきます。具体的には\[Setting\]>\[Builds & deployments\]>\[Branch deployments\]>\[Automatic deployments\]を\[Disabled\]に設定します。
 
 ![Automatic deployments設定画面](./automatic-deployments.png)
 
-以上で Gatsby v5 製のサイトを Cloudflare Pages へ無事デプロイできました。
+以上で Gatsby v5 製のサイトを Cloudflare Pages へデプロイする環境が整いました。やったね。
 
 ## 参考
 
-- [GitHub Actions でビルドして Cloudflare Pages にデプロイする](https://github.com/marketplace/actions/cloudflare-pages-github-action)
+- [GitHub Actions でビルドして Cloudflare Pages にデプロイする](https://zenn.dev/nwtgck/articles/1fdee0e84e5808)
