@@ -1,4 +1,4 @@
-import { extendTheme, baseTheme } from "@chakra-ui/react"
+import { extendTheme, baseTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   config: {
@@ -24,8 +24,8 @@ const theme = extendTheme({
         _dark: "RGBA(255, 255, 255, 0.02)",
       },
       highlightBackground: {
-        default: "RGBA(0, 0, 0, 0.03)",
-        _dark: "RGBA(255, 255, 255, 0.04)",
+        default: "RGBA(255, 0, 0, 0.05)",
+        _dark: "RGBA(0, 255, 255, 0.05)",
       },
     },
   },
@@ -37,6 +37,6 @@ const theme = extendTheme({
       },
     },
   },
-})
+});
 
-export default theme
+export default theme;

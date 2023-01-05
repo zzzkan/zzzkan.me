@@ -10,5 +10,5 @@
     ":prHourlyLimitNone",
     "schedule:earlyMondays",
     ":timezone(Asia/Tokyo)"
-  ],
+  ]
 }
