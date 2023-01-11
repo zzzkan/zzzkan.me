@@ -1,4 +1,11 @@
 {
     "editor.formatOnSave": true,
     "textlint.autoFixOnSave": true,
+    "files.associations": {
+        "LICENSE": "plaintext",
+        "static/_headers": "plaintext"
+    },
+    "[plaintext]": {
+        "editor.formatOnSave": false
+      },
 }
