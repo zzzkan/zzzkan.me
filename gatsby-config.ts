@@ -52,7 +52,7 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: "gatsby-plugin-feed",
       options: {
         query: `
           {
@@ -74,11 +74,15 @@ const config: GatsbyConfig = {
               query: { site: Queries.Site; allPost: Queries.PostConnection };
             }) =>
               allPost.nodes.map((post) => {
-                const url = site?.siteMetadata?.siteUrl + post.slug;
+                const url = (
+                  site?.siteMetadata?.siteUrl +
+                  post.slug +
+                  "/"
+                ).replace(/\/\/+/g, "/");
                 return {
                   title: post.title,
                   date: post.updatedDate,
-                  excerpt: post.excerpt,
+                  description: post.excerpt,
                   url,
                   guid: url,
                 };
