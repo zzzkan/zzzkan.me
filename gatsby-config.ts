@@ -100,7 +100,7 @@ const config: GatsbyConfig = {
               }
             `,
             output: "/rss.xml",
-            title: "RSS Feed",
+            title: "blog.zzzkan.me - RSS Feed",
           },
         ],
       },
