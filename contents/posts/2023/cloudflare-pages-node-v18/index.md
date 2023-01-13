@@ -1,8 +1,8 @@
 ---
-slug: cloudflare-pages-node-v18
+slug: not-use-node-v18-on-cloudflare-pages
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
-updatedDate: 2023-01-04
+updatedDate: 2023-01-14
 featuredImage: ./thumbnail.png
 tags:
   - Cloudflare Pages
