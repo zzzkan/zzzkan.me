@@ -5,7 +5,7 @@ publishedDate: 2023-01-04
 updatedDate: 2023-01-04
 featuredImage: ./thumbnail.png
 tags:
-  - CloudflarePages
+  - Cloudflare Pages
 ---
 
 ⚠️ この記事は 2023/01/04 時点の内容あることに注意してください。
