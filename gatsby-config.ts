@@ -3,14 +3,13 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: "blog.zzzkan.me",
-    siteUrl: "https://blog.zzzkan.me",
+    siteUrl: "https://blog.zzzkan.me/",
     description: "zzzkan's blog",
     author: "zzzkan",
     publicationYear: 2023,
     imageUrl: "https://blog.zzzkan.me/banner.png",
   },
   graphqlTypegen: true,
-  trailingSlash: "never",
   plugins: [
     {
       resolve: "@zzzkan/gatsby-theme-blog",
@@ -75,10 +74,11 @@ const config: GatsbyConfig = {
               query: { site: Queries.Site; allPost: Queries.PostConnection };
             }) =>
               allPost.nodes.map((post) => {
-                const url = (site?.siteMetadata?.siteUrl + post.slug).replace(
-                  /\/\/+/g,
+                const url = (
+                  site?.siteMetadata?.siteUrl +
+                  post.slug +
                   "/"
-                );
+                ).replace(/\/\/+/g, "/");
                 return {
                   title: post.title,
                   date: post.updatedDate,
