@@ -74,11 +74,10 @@ const config: GatsbyConfig = {
               query: { site: Queries.Site; allPost: Queries.PostConnection };
             }) =>
               allPost.nodes.map((post) => {
-                const url = (
-                  site?.siteMetadata?.siteUrl +
-                  post.slug +
-                  "/"
-                ).replace(/\/\/+/g, "/");
+                const url = new URL(
+                  (post.slug + "/").replace(/\/\/+/g, "/"),
+                  site?.siteMetadata?.siteUrl ?? ""
+                ).href;
                 return {
                   title: post.title,
                   date: post.updatedDate,
