@@ -2,6 +2,7 @@
 slug: visual-regression-testing-with-winmerge
 title: WinMergeでVisual Regression Testingしたかった
 publishedDate: 2023-01-17
+updatedDate: 2023-01-18
 featuredImage: ./thumbnail.png
 tags:
   - Visual Regression Testing
@@ -21,19 +22,19 @@ VRT 導入の選択肢ですがたとえば以下の記事にもあるように�
 
 [2023 年に Visual Regression Testing を始めるならどんな選択肢があるか](https://zenn.dev/loglass/articles/visual-regression-testing-comparison)
 
-ただ、Web フロントエンド周辺で普及しているようなので当たり前なのですがブラウザを前提にしたものが多く、Web フロントエンド以外のプロジェクトでの導入がためらわれるものも多そうです。そんな中[reg-suit](https://github.com/reg-viz/reg-suit)なんかは機能がシンプル（画像の差分検出だけ）で Web フロントエンド以外のプロジェクトでも導入しやすそうなのですが、Node.js や依存関係のインストールはやはり必要です。
+ただ、Web フロントエンド周辺で普及しているようなので当たり前なのですがブラウザを前提にしたものが多く、Web フロントエンド以外のプロジェクトでの導入がためらわれるものも多そうです。[reg-suit](https://github.com/reg-viz/reg-suit)なんかは機能がシンプル（画像の差分検出だけ）で Web フロントエンド以外のプロジェクトでも導入しやすそうなのですが、Node.js や依存関係のインストールはやはり必要です。
 
 許可されていないソフトウェアはインストールできねえ…という悲しい声が聞こえてきた気がします。
 
 ## WinMerge の出番
 
-このような環境であっても高確率で初期装備されているソフトウェアの 1 つに[WinMerge](https://github.com/winmerge/winmerge)があると思っています。この WinMerge 実は画像比較もいけます。ということで WinMerge で VRT っぽいことができないか試してみます。
+何らからの事情で VRT として作りこまれているツールを安易に使えない場面も考えられます。このような環境であっても高確率で初期装備されているソフトウェアの 1 つに[WinMerge](https://github.com/winmerge/winmerge)があると思っています。この WinMerge 実は画像比較もいけます。ということで WinMerge で VRT っぽいことができないか試してみます。
 
 なおここでは WinMerge v2.16.24.0 を用いました。また、画像比較とレポート生成のみを扱い比較画像の生成については扱いません。
 
 ### 画像比較
 
-WinMerge での画像比較は単純に画像ファイルを WinMerge で開き比較するだけです。すると以下のような比較結果が得られます。
+WinMerge での画像比較は単純に画像ファイルを WinMerge で開くだけです。すると以下のような比較結果が得られます。
 
 ![WinMergeによる画像ファイルの比較](./image-file-diff.png)
 
@@ -69,27 +70,100 @@ VRT をサポートしているツールはたいていテストレポート結�
 
 いままでは WinMerge 画面上でさまざまな操作をしてきました。ただ VRT を実行する場合画面操作は不要でコマンドラインから実行できるほうが便利です。
 
-実は WinMerge はコマンドラインからの実行も可能です。さらに、オプションを指定することでこれまで行ってきた設定をした上で比較を開始できます。以下は「画像が含まれる 2 つのフォルダーを比較し結果をレポートに出力する」例です。
+実は WinMerge はコマンドラインからの実行も可能です。さらに、オプションを指定することでこれまで行ってきたような設定を渡すことができます。「画像が含まれる 2 つのフォルダーを比較し結果をレポートに出力する」には以下のようにします。
 
 ```bat
-"C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe" C:\winmerge-vrt\expeted C:\winmerge-vrt\actual /r /u /noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1 /minimize /noninteractive /or C:\winmerge-vrt\report.html
+"C:\Users\cotoc\AppData\Local\Programs\WinMerge\WinMergeU.exe" .\expeted .\actual /r /u /noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1 /minimize /noninteractive /or report.html
 ```
 
-`"C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe"`は WinMerge のパスです。 `C:\winmerge-vrt\expeted`、`C:\winmerge-vrt\actual`は比較対象のディレクトリです。以降はオプションで以下のような内容です。
+`WinMergeU.exe`は WinMerge のパス、`expeted`と`actual`は比較対象、以降がオプションで使用しているのは以下です。
 
-- `/r`：サブフォルダー内のすべてのファイルを比較(再帰比較)
-- `/u`：パスを最近使用した項目リストに追加しない
-- `/noprefs`：デフォルト設定を使用する（レジストリを読み込まない）
-- `/cfg "config=x"`：設定情報を指定する
-  - `Settings/DirViewExpandSubdirs=1`：「自動的にサブフォルダーを展開する」を有効化（展開しておかないとレポートでファイル単位の比較結果を確認できない）
-  - `Settings/EnableImageCompareInFolderCompare=1`：「フォルダー比較で画像比較を有効にする」を有効化
-  - `ReportFiles/ReportType=2`：レポートスタイルとして「シンプルな HTML 形式」を選択
-  - `ReportFiles/IncludeFileCmpReport=1`：「ファイル比較レポートを含める」を有効化
-- `/minimize`：最小化状態で WinMerge を開始
-- `/noninteractive`：比較やレポート出力後に WinMerge を終了
-- `/or "reportpath"`：レポート出力パスを指定する
+| オプション        | 内容                                                                   |
+| ----------------- | ---------------------------------------------------------------------- |
+| `/r`              | サブフォルダー内のすべてのファイルを比較(再帰比較)                     |
+| `/u`              | パスを最近使用した項目リストに追加しない                               |
+| `/noprefs`        | デフォルト設定を使用する（レジストリに保存している設定を読み込まない） |
+| `/cfg config`     | 設定情報を指定する                                                     |
+| `/minimize`       | 最小化状態で WinMerge を開始                                           |
+| `/noninteractive` | 比較やレポート出力後に WinMerge を終了                                 |
+| `/or reportpath`  | レポート出力パスを指定する                                             |
 
-これにてコマンド１発で WinMerge を用いた VRT を実行できるようになりました。正直なところあまり期待していなかったのですが予想に反してかなり使えそうです。バッチファイルなんかをしっかり書けばかなり便利になりそう。
+`/cfg`で渡している設定情報は以下のような内容です。
+
+| 設定情報                                       | 内容                                                                                                             |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `Settings/DirViewExpandSubdirs=1`              | 「自動的にサブフォルダーを展開する」を有効化（展開しておかないとレポートでファイル単位の比較結果を確認できない） |
+| `Settings/EnableImageCompareInFolderCompare=1` | 「フォルダー比較で画像比較を有効にする」を有効化                                                                 |
+| `ReportFiles/ReportType=2`                     | レポートスタイルとして「シンプルな HTML 形式」を選択                                                             |
+| `ReportFiles/IncludeFileCmpReport=1`           | 「ファイル比較レポートを含める」を有効化                                                                         |
+
+コマンド１発で画像比較からレポートの作成までできるようになりました。正直なところここまでできるとは思ってませんでした。バッチファイルなんかをしっかり書けばかなり便利になりそう。
+
+### （追記）簡単なバッチファイル
+
+とりあえず簡単なバッチファイルを書いてみました。
+
+```bat
+:: diff-image.cmd
+
+@echo off
+setlocal
+
+::WinMergeのパスを設定（適宜修正…）
+set winmerge_path="C:\Users\cotoc\AppData\Local\Programs\WinMerge\WinMergeU.exe"
+
+if "%1"=="" (
+    echo Error : missing required parameter 'expected'
+    exit /b 1
+)
+set expected_path=%~1
+shift
+
+if "%1"=="" (
+    echo Error : missing required parameter 'actual'
+    exit /b 1
+)
+set actual_path=%~1
+shift
+
+:loop
+if not "%1"=="" (
+    if "%1"=="/r" (
+        if "%2"=="" (
+            echo Error : missing required parameter 'reportpath'
+            exit /b 1
+        )
+        set report_path=%~2
+        shift
+    )
+    if "%1"=="/u" (
+        xcopy /F /S /E /I /Y %actual_path% %expected_path%
+        exit /b 0
+    )
+    shift
+    goto :loop
+)
+
+set config_parameter=/noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1
+if not "%report_path%"=="" set report_parameter=/noninteractive /minimize /or %report_path%
+
+%winmerge_path% %expected_path% %actual_path% /r /u /wr %config_parameter% %report_parameter%
+
+exit /b 0
+```
+
+使い方は以下です。
+
+```bat
+.\diff-image.cmd expeted actual [/u] [/r peprtpath]
+```
+
+次のオプションが利用できます。オプションが指定されていない場合は WinMerge の比較結果画面を表示します。
+
+- `/u`：`expeted`を`actual`で更新する
+- `/r peprtpath`：レポートを出力する
+
+できれば`/u`による更新は WinMerge のマージで行えるようにしてみたかったのですがうまく動作させられなかったためあきらめて単純に`xcopy`で上書きしています。
 
 ## 参考
 
