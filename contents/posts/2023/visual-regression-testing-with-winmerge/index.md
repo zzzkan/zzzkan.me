@@ -73,10 +73,10 @@ VRT をサポートしているツールはたいていテストレポート結�
 実は WinMerge はコマンドラインからの実行も可能です。さらに、オプションを指定することでこれまで行ってきたような設定を渡すことができます。「画像が含まれる 2 つのフォルダーを比較し結果をレポートに出力する」には以下のようにします。
 
 ```bat
-"C:\Users\cotoc\AppData\Local\Programs\WinMerge\WinMergeU.exe" .\expeted .\actual /r /u /noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1 /minimize /noninteractive /or report.html
+"C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe" .\expected .\actual /r /u /noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1 /minimize /noninteractive /or report.html
 ```
 
-`WinMergeU.exe`は WinMerge のパス、`expeted`と`actual`は比較対象、以降がオプションで使用しているのは以下です。
+`WinMergeU.exe`は WinMerge のパス、`expected`と`actual`は比較対象、以降がオプションで使用しているのは以下です。
 
 | オプション        | 内容                                                                   |
 | ----------------- | ---------------------------------------------------------------------- |
@@ -110,7 +110,7 @@ VRT をサポートしているツールはたいていテストレポート結�
 setlocal
 
 ::WinMergeのパスを設定（適宜修正…）
-set winmerge_path="C:\Users\cotoc\AppData\Local\Programs\WinMerge\WinMergeU.exe"
+set winmerge_path="C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe"
 
 if "%1"=="" (
     echo Error : missing required parameter 'expected'
@@ -155,12 +155,12 @@ exit /b 0
 使い方は以下です。
 
 ```bat
-.\diff-image.cmd expeted actual [/u] [/r peprtpath]
+.\diff-image.cmd expected actual [/u] [/r peprtpath]
 ```
 
 次のオプションが利用できます。オプションが指定されていない場合は WinMerge の比較結果画面を表示します。
 
-- `/u`：`expeted`を`actual`で更新する
+- `/u`：`expected`を`actual`で更新する
 - `/r peprtpath`：レポートを出力する
 
 できれば`/u`による更新は WinMerge のマージで行えるようにしてみたかったのですがうまく動作させられなかったためあきらめて単純に`xcopy`で上書きしています。
