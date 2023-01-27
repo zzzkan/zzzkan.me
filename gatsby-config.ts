@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
     imageUrl: "https://blog.zzzkan.me/banner.png",
   },
   graphqlTypegen: true,
+  trailingSlash: "always",
   plugins: [
     {
       resolve: "@zzzkan/gatsby-theme-blog",
