@@ -2,13 +2,11 @@
 slug: cloudflare-pages-node-v18
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
-updatedDate: 2023-01-04
+updatedDate: 2023-01-31
 featuredImage: ./thumbnail.png
 tags:
   - Cloudflare Pages
 ---
-
-⚠️ この記事は 2023/01/04 時点の内容あることに注意してください。
 
 このブログは Gatsby + Cloudflare Pages という構成で作られています。Gatsby のバージョンとしては現在最新の v5 を利用しているのですが Gatsby v5 では[Node 18](https://www.gatsbyjs.com/docs/reference/release-notes/v5.0/#node-18)が必要です。これを Cloudflare Pages でビルドしようとすると Node 18 のインストールで失敗してしまいます。
 
@@ -34,11 +32,15 @@ tags:
 
 [Build configuration · Cloudflare Pages docs](https://developers.cloudflare.com/pages/platform/build-configuration)
 
-Node 18 への対応は次期ビルドイメージで対応される予定のようです。次期ビルドイメージについては[Build Image Update · Discussion #1 · cloudflare/pages-build-image](https://github.com/cloudflare/pages-build-image/discussions/1)で議論されています。
+Node 18 への対応は次期ビルドイメージで対応される予定のようです。次期ビルドイメージについては[Build Image Update · Discussion #1 · cloudflare/pages-build-image](https://github.com/cloudflare/pages-build-image/discussions/1)で議論されています。新しい Node にいつ対応されるのかという話題はかなりあがっていて、一応 Maintainer の方が以下のように発言されているのでそのうち対応されるはずです。
+
+> We know. We didn't expect it to be this long. We use Pages just like all of you and feel the pain ourselves. It's coming is all I can say right now.
+
+ちなみに現状最もサポート期限が長い Node 16 が 2023 年 9 月 11 日でサポート期間満了（EoL）になる予定なのでそれまでにはリリースされると信じたいです。
 
 ## GitHub Actions でビルドする
 
-現状 Cloudflare Pages ではビルドできないことがわかりました。ただ、次期ビルドイメージがリリースされるのを待つわけにもいかないです。なので GitHub Actions でビルドすることにします。
+現状 Cloudflare Pages では Gatsby v5 をビルドできないことがわかりました。ただ、次期ビルドイメージがリリースされるのを待つわけにもいかないです。なので GitHub Actions でビルドすることにします。
 
 幸いにも [Cloudflare 公式の Action](https://github.com/marketplace/actions/cloudflare-pages-github-action) があったので今回はこちらを利用しました。基本的な使い方は Action の Readme に記載されているのでここでは割愛します。
 
