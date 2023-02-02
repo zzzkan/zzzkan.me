@@ -19,13 +19,8 @@ const theme = extendTheme({
         default: "RGBA(0, 0, 0, 0.02)",
         _dark: "RGBA(255, 255, 255, 0.02)",
       },
-      codeBackground: {
-        default: "RGBA(0, 0, 0, 0.025)",
-        _dark: "RGBA(255, 255, 255, 0.050)",
-      },
-      highlightBackground: {
-        default: "RGBA(255, 0, 0, 0.05)",
-        _dark: "RGBA(0, 255, 255, 0.05)",
+      highlightCode: {
+        default: "RGBA(0, 255, 255, 0.05)",
       },
     },
   },

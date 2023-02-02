@@ -19,6 +19,7 @@ const config: GatsbyConfig = {
         basePath: "/",
         contentPath: "contents/posts",
         dateFormatString: "YYYY/MM/DD",
+        shikiTheme: "dracula",
         links: [
           {
             name: "Profile",
