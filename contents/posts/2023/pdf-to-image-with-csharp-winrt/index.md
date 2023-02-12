@@ -42,9 +42,9 @@ public static async Task ConvertPdfToImage(string pdfFilePath, string imageFolde
     var pdfDocument = await PdfDocument.LoadFromFileAsync(pdfStorageFile);
     var imageFolder = await StorageFolder.GetFolderFromPathAsync(imageFolderPath);
     var imageFileNamePrefix = Path.GetFileNameWithoutExtension(pdfFilePath);
-    for (var i = 1u; i <= pdfDocument.PageCount; i++)
+    for (var i = 0u; i < pdfDocument.PageCount; i++)
     {
-        var imageFileName = $"{imageFileNamePrefix}-page-{i}.png";
+        var imageFileName = $"{imageFileNamePrefix}-page-{i + 1}.png";
         var imageStorageFile = await imageFolder.CreateFileAsync(imageFileName, CreationCollisionOption.ReplaceExisting);
         using var outputStream = await imageStorageFile.OpenAsync(FileAccessMode.ReadWrite);
         using var pdfPage = pdfDocument.GetPage(i);
