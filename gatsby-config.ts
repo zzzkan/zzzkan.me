@@ -23,7 +23,7 @@ const config: GatsbyConfig = {
         links: [
           {
             name: "Profile",
-            url: "/",
+            url: "https://zzzkan.me/",
           },
           {
             name: "RSS",
