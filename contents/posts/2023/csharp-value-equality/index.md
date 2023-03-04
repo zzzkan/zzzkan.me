@@ -2,6 +2,7 @@
 slug: csharp-value-equality
 title: C#でクラスあるいは構造体に値の等価性を定義する
 publishedDate: 2023-01-14
+updatedDate: 2023-03-05
 featuredImage: ./thumbnail.png
 tags:
   - C Sharp
@@ -13,7 +14,7 @@ C#においてクラスは参照型なので`Equals`や`==`では参照の等価
 
 ## レコードを使う
 
-値の等価性が必要な場合は`class`ではなく`record`（または`record class`）、`struct`ではなく`record struct`が使えます。
+クラスに値の等価性が必要な場合は`class`ではなく`record`（または`record class`）を使います。構造体の場合は`struct`ではなく`record struct`を使います。
 
 ```cs
 public record Point(int x, int y);
@@ -245,6 +246,27 @@ public class Point : IEquatable<Point?>
 ちなみにここで出てくる`EqualityComparer<T>.Default.Equals`は、`T`が`IEquatable<T>`を実装していれば`IEquatable<T>.Equals`を使用し、それ以外は`Object.Equals`を使用します。どこかで聞いたことがあるような仕組みですね。
 
 これで Visual Studio で自動実装した実装になりました。長かった。
+
+### （余談）null チェックと演算子のオーバーロード
+
+C#には null チェックを行う方法がいくつかあります。よく使われるのは`hoge == null`のように演算子を利用する方法でしょうか。この方法には実は罠があって、それは今回のように演算子をオーバーロードしたときです。
+
+演算子をオーバーロードしているときに`hoge == null`と書いてしまうとオーバーロード先の処理が呼ばれてしまいます。オーバーロード先の処理が重かったりすると無駄に時間がかかることになります。さらにまずいのは以下のようにオーバーロードしてしまうことです。
+
+```cs
+...
+public static bool operator ==(Point? left, Point? right)
+{
+    return !(left == null) && left.Equals(right);
+}
+...
+```
+
+個人的には思わず書いてしまいそうになるのですがこれは`StackOverflowException`になります。ようするに無限ループになります。演算子の中で演算子を呼んでいるのでまあよく考えたら当然ですね。
+
+個人的には単に null チェックをしたいだけなのであれば演算子は使わないほうが無難な気もしています。こういとき昔ながらの方法は`ReferenceEquals(hoge, null)`になるんですがなんかちょっといけてない気がします。最近の C#であれな[パターンマッチング](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/functional/pattern-matching)が使えるので`hoge is null`とスマートに書けます。
+
+やっぱりレコードもあってパターンマッチングもある最新の C#を使うべき！
 
 ## 参考
 

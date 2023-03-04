@@ -3,7 +3,8 @@
     "preset-ja-technical-writing": {
       "sentence-length": {
         "max": 150
-      }
+      },
+      "no-exclamation-question-mark": false
     }
   },
   "plugins": {
