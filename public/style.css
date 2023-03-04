@@ -1,8 +1,14 @@
-body {
-    max-width: 680px;
-    margin: auto;
+.wrapper {
+  max-width: 660px;
+  margin: auto;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 h1 {
     text-align: center;
+}
+
+ul li {
+    padding-bottom: 0.5em;
 }
