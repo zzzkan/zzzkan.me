@@ -76,26 +76,26 @@ VRT をサポートしているツールはたいていテストレポート結�
 "C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe" .\expected .\actual /r /u /noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1 /minimize /noninteractive /or report.html
 ```
 
-`WinMergeU.exe`は WinMerge のパス、`expected`と`actual`は比較対象、以降がオプションで使用しているのは以下です。
+WinMergeU.exe は WinMerge のパス、 expected と actual は比較対象、以降がオプションで使用しているのは以下です。
 
-| オプション        | 内容                                                                   |
-| ----------------- | ---------------------------------------------------------------------- |
-| `/r`              | サブフォルダー内のすべてのファイルを比較(再帰比較)                     |
-| `/u`              | パスを最近使用した項目リストに追加しない                               |
-| `/noprefs`        | デフォルト設定を使用する（レジストリに保存している設定を読み込まない） |
-| `/cfg config`     | 設定情報を指定する                                                     |
-| `/minimize`       | 最小化状態で WinMerge を開始                                           |
-| `/noninteractive` | 比較やレポート出力後に WinMerge を終了                                 |
-| `/or reportpath`  | レポート出力パスを指定する                                             |
+| オプション      | 内容                                                                   |
+| --------------- | ---------------------------------------------------------------------- |
+| /r              | サブフォルダー内のすべてのファイルを比較(再帰比較)                     |
+| /u              | パスを最近使用した項目リストに追加しない                               |
+| /noprefs        | デフォルト設定を使用する（レジストリに保存している設定を読み込まない） |
+| /cfg config     | 設定情報を指定する                                                     |
+| /minimize       | 最小化状態で WinMerge を開始                                           |
+| /noninteractive | 比較やレポート出力後に WinMerge を終了                                 |
+| /or reportpath  | レポート出力パスを指定する                                             |
 
-`/cfg`で渡している設定情報は以下のような内容です。
+/cfg で渡している設定情報は以下のような内容です。
 
-| 設定情報                                       | 内容                                                                                                             |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `Settings/DirViewExpandSubdirs=1`              | 「自動的にサブフォルダーを展開する」を有効化（展開しておかないとレポートでファイル単位の比較結果を確認できない） |
-| `Settings/EnableImageCompareInFolderCompare=1` | 「フォルダー比較で画像比較を有効にする」を有効化                                                                 |
-| `ReportFiles/ReportType=2`                     | レポートスタイルとして「シンプルな HTML 形式」を選択                                                             |
-| `ReportFiles/IncludeFileCmpReport=1`           | 「ファイル比較レポートを含める」を有効化                                                                         |
+| 設定情報                                     | 内容                                                                                                             |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Settings/DirViewExpandSubdirs=1              | 「自動的にサブフォルダーを展開する」を有効化（展開しておかないとレポートでファイル単位の比較結果を確認できない） |
+| Settings/EnableImageCompareInFolderCompare=1 | 「フォルダー比較で画像比較を有効にする」を有効化                                                                 |
+| ReportFiles/ReportType=2                     | レポートスタイルとして「シンプルな HTML 形式」を選択                                                             |
+| ReportFiles/IncludeFileCmpReport=1           | 「ファイル比較レポートを含める」を有効化                                                                         |
 
 コマンド１発で画像比較からレポートの作成までできるようになりました。正直なところここまでできるとは思ってませんでした。バッチファイルなんかをしっかり書けばかなり便利になりそう。
 
@@ -160,10 +160,10 @@ exit /b 0
 
 次のオプションが利用できます。オプションが指定されていない場合は WinMerge の比較結果画面を表示します。
 
-- `/u`：`expected`を`actual`で更新する
-- `/r peprtpath`：レポートを出力する
+- /u ： expected を actual で更新する
+- /r peprtpath ：レポートを出力する
 
-できれば`/u`による更新は WinMerge のマージで行えるようにしてみたかったのですがうまく動作させられなかったためあきらめて単純に`xcopy`で上書きしています。
+できれば /u による更新は WinMerge のマージで行えるようにしてみたかったのですがうまく動作させられなかったためあきらめて単純に`xcopy`で上書きしています。
 
 ## 参考
 

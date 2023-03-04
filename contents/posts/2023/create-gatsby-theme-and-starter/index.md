@@ -37,9 +37,9 @@ Gatsby でサイトの構築をはじめる際はよく以下のようにしま�
 npx gatsby new gatsby-starter-hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world
 ```
 
-ここで指定しているのが [Gatsby Starter](https://www.gatsbyjs.com/docs/starters/) です。Gatsby Starter はようするに**ボイラープレート**です。`gatsby new`コマンドを用いて簡単にテンプレとなる Gatsby サイトを展開できます。ただし、あくまでその時点での Gatsby プロジェクトのコピーが得られるだけで以降の開発はすべて自身で行う必要があります。たとえばわかりやすいのが依存関係のバージョンで、Starter 側がバージョンを上げたとしても作成したプロジェクトのバージョンは上がらないため自身でメンテする必要があります。
+ここで指定しているのが [Gatsby Starter](https://www.gatsbyjs.com/docs/starters/) です。Gatsby Starter はようするに**ボイラープレート**です。`gatsby new{:txt}`コマンドを用いて簡単にテンプレとなる Gatsby サイトを展開できます。ただし、あくまでその時点での Gatsby プロジェクトのコピーが得られるだけで以降の開発はすべて自身で行う必要があります。たとえばわかりやすいのが依存関係のバージョンで、Starter 側がバージョンを上げたとしても作成したプロジェクトのバージョンは上がらないため自身でメンテする必要があります。
 
-このような問題を解決する手段として [Gatsby Theme](https://www.gatsbyjs.com/docs/themes/) があります。Gatsby Theme はようするに **Plugin** です。`gatsby-config`で以下のようにして利用します。
+このような問題を解決する手段として [Gatsby Theme](https://www.gatsbyjs.com/docs/themes/) があります。Gatsby Theme はようするに **Plugin** です。gatsby-config で以下のようにして利用します。
 
 ```ts
 import type { GatsbyConfig } from "gatsby";
@@ -61,7 +61,7 @@ Gatsby Theme を作るうえでおもに以下を参考にさせてもらいま�
 2. [gatsbyjs/themes: This is a repo for Gatsby's official themes.](https://github.com/gatsbyjs/themes)
 3. [LekoArts/gatsby-themes: Get high-quality and customizable Gatsby themes to quickly bootstrap your website! Choose from many professionally created and impressive designs with a wide variety of features and customization options.](https://github.com/LekoArts/gatsby-themes)
 
-ちなみに Gatsby Starter は単なる Gatsby サイトなので普通にサイトを作るだけです。GitHub などのリポジトリに公開しておけば`gatsby new`コマンドから利用可能になります。
+ちなみに Gatsby Starter は単なる Gatsby サイトなので普通にサイトを作るだけです。GitHub などのリポジトリに公開しておけば`gatsby new{:txt}`コマンドから利用可能になります。
 
 ## どうやって作ったか
 
@@ -73,13 +73,13 @@ Theme を開発するプロジェクトだけでは実サイトとしての動�
 
 ### TypeScript
 
-Gatsby v4.9 から`gatsby-config.ts`のように Gatsby の設定ファイルの TypeScript 化が可能になっています。ただ、残念なことに yarn workspaces を使っているとうまく動作しませんでした（詳細まではおってない）。で [TypeScript and Gatsby | Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/) を確認すると以下のように書かれてました。
+Gatsby v4.9 から gatsby-config.ts のように Gatsby の設定ファイルの TypeScript 化が可能になっています。ただ、残念なことに yarn workspaces を使っているとうまく動作しませんでした（詳細まではおってない）。で [TypeScript and Gatsby | Gatsby](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/) を確認すると以下のように書かれてました。
 
 > Workspaces (e.g. Yarn) are not supported.
 
 ということで今回は素直に設定ファイルの TypeScript 化は諦めました。
 
-一方で Gatsby v4.15 で正式に機能追加された [GraphQL Typegen](https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/) は普通に動いたので使いました。GraphQL Typegen は GraphQL の型情報を自動生成してくれます。使うには`gatsby-config`で以下のようにします。
+一方で Gatsby v4.15 で正式に機能追加された [GraphQL Typegen](https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/) は普通に動いたので使いました。GraphQL Typegen は GraphQL の型情報を自動生成してくれます。使うには gatsby-config で以下のようにします。
 
 ```js
 module.exports = {
@@ -87,19 +87,19 @@ module.exports = {
 };
 ```
 
-すると`gatsby develop`のたびに GraphQL の型情報が含まれる`gatsby-types.d.ts`を生成するようになります。
+すると`gatsby develop{:txt}`のたびに GraphQL の型情報が含まれる gatsby-types.d.ts を生成するようになります。
 
 ### コンポーネントの分割
 
-Gatsby Theme には [Shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) という概念があります。これは Theme のもともとの実装をユーザーが独自の実装に差し替えることができるというものです。たとえば、ユーザーが Theme のタイトルだけを独自の実装へ変更したい場合 Theme 側に`Title.tsx`のようなコンポーネントがあればこのコンポーネントを Shadowing するだけで済みます。
+Gatsby Theme には [Shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) という概念があります。これは Theme のもともとの実装をユーザーが独自の実装に差し替えることができるというものです。たとえば、ユーザーが Theme のタイトルだけを独自の実装へ変更したい場合 Theme 側に Title.tsx のようなコンポーネントがあればこのコンポーネントを Shadowing するだけで済みます。
 
-ということで Gatsby Theme ではコンポーネントが（正確には`src`内のファイルすべてですが） Shadowing の 1 つの単位になります。自分のサイトを作るだけであればコンポーネントの分割はある程度てきとうでいい気もしますが、Gatsby Theme を作る場合は少なくとも Shadowing されることを意識して分割するとよさそうです。
+ということで Gatsby Theme ではコンポーネントが（正確には src 内のファイルすべてですが） Shadowing の 1 つの単位になります。自分のサイトを作るだけであればコンポーネントの分割はある程度てきとうでいい気もしますが、Gatsby Theme を作る場合は少なくとも Shadowing されることを意識して分割するとよさそうです。
 
 ### スタイル
 
-これは別になんでもいいんですが Gatsby のチュートリアルでは [Theme UI](https://www.gatsbyjs.com/docs/how-to/styling/theme-ui/) の使用例がよく出てきます。Theme UI は Theming に力を入れたライブラリです。Gatsby Theme 側で`theme.js`などにスタイルを定義しておいてユーザーが独自の実装をしたい場合は Shadowing してもらうというパターンをよく見かけました。
+これは別になんでもいいんですが Gatsby のチュートリアルでは [Theme UI](https://www.gatsbyjs.com/docs/how-to/styling/theme-ui/) の使用例がよく出てきます。Theme UI は Theming に力を入れたライブラリです。Gatsby Theme 側で theme.js などにスタイルを定義しておいてユーザーが独自の実装をしたい場合は Shadowing してもらうというパターンをよく見かけました。
 
-今回は興味があったため Theme UI と同様な Theming ができる [Chakra UI](https://chakra-ui.com/) を使ってみました。ただ、 Chakra UI はバンドルサイズが結構大きくてブログ程度には過剰だった気がかなりしています。v2.4.2 から追加された`ChakraBaseProvider`で不要なテーマを剥がせるようになっているみたいなので気が向いたら検討します（たぶんしない）。
+今回は興味があったため Theme UI と同様な Theming ができる [Chakra UI](https://chakra-ui.com/) を使ってみました。ただ、 Chakra UI はバンドルサイズが結構大きくてブログ程度には過剰だった気がかなりしています。v2.4.2 から追加された [ChakraBaseProvider](https://chakra-ui.com/changelog/2.4.2#react-242) で不要なテーマを剥がせるようになっているみたいなので気が向いたら検討します（たぶんしない）。
 
 ### テスト
 
@@ -142,4 +142,6 @@ Theme を公開した後に Theme を使用した Starter も合わせて作成�
 
 ## まとめ
 
-結構大変でしたが作ってみてよかったです。よければ使ってみていただけると、そして FB いただけるととっっても嬉しいです。
+結構大変でしたが作ってみてよかったです。
+
+よければ使ってみていただけると、そして FB いただけるととっっても嬉しいです。
