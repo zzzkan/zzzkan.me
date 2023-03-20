@@ -19,7 +19,7 @@
     "lint": "textlint \"**/*.{md,mdx}\""
   },
   "dependencies": {
-    "@zzzkan/gatsby-theme-blog": "^0.5.1",
+    "@zzzkan/gatsby-theme-blog": "^0.6.0",
     "gatsby": "^5.3.3",
     "gatsby-plugin-feed": "^5.3.1",
     "gatsby-plugin-manifest": "^5.3.1",
