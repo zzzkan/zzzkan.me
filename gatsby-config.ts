@@ -4,7 +4,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: "blog.zzzkan.me",
     siteUrl: "https://blog.zzzkan.me/",
-    description: "zzzkan's blog",
+    description:
+      "zzzkanのブログです。ソフトウェア関連の話題が多いと思いますが気が向いたことなら何でも書くところ。",
     author: "zzzkan",
     publicationYear: 2023,
     imageUrl: "https://blog.zzzkan.me/banner.png",
