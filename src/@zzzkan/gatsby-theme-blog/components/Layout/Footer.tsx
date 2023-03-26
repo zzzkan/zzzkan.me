@@ -12,12 +12,12 @@ type Props = Pick<SiteMetadataType, "author" | "publicationYear"> &
 export const Footer: React.FC<Props> = ({ author, publicationYear, links }) => {
   return (
     <Box as={"footer"} position={"sticky"} top={"100vh"}>
-      <Center >
+      <Center marginBottom={3}>
         <HStack>
           <StaticImage src="../../../../../contents/images/icon.png" alt="zzzkan" width={80} style={{ borderRadius: "50%" }}/>
           <div>
-            <Heading as={"div"} fontSize={"xl"} fontWeight={"semibold"}>zzzkan</Heading>
-            <Text>アルフォートは水色派です。</Text>
+            <Heading as={"div"} fontSize={"lg"} fontWeight={"semibold"}>zzzkan</Heading>
+            <Text fontSize={"sm"}>アルフォートは水色派です。</Text>
           </div>
         </HStack>
       </Center>
