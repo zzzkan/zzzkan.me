@@ -82,8 +82,8 @@ const config: GatsbyConfig = {
                   site?.siteMetadata?.siteUrl ?? ""
                 ).href;
                 return {
-                  title: post.title,
-                  date: post.publishedDate,
+                  title: `${post.title} - ${site?.siteMetadata?.title}`,
+                  date: post.updatedDate ?? post.publishedDate,
                   description: post.excerpt,
                   url,
                   guid: url,
@@ -96,13 +96,16 @@ const config: GatsbyConfig = {
                     slug
                     title
                     publishedDate
+                    updatedDate
                     excerpt
                   }
                 }
               }
             `,
             output: "/rss.xml",
-            title: "blog.zzzkan.me - RSS Feed",
+            title: "RSS Feed - blog.zzzkan.me",
+            feed_url: "https://blog.zzzkan.me/rss.xml",
+            site_url: "https://blog.zzzkan.me/",
           },
         ],
       },
