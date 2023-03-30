@@ -3,7 +3,6 @@ slug: cloudflare-pages-node-v18
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
 updatedDate: 2023-01-31
-featuredImage: ./thumbnail.png
 tags:
   - Cloudflare Pages
 ---

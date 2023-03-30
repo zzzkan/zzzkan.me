@@ -2,7 +2,6 @@
 slug: create-gatsby-theme-and-starter
 title: Gatsby ThemeとStarterを作った
 publishedDate: 2023-01-27
-featuredImage: ./thumbnail.png
 tags:
   - Gatsby
 ---

@@ -2,7 +2,6 @@
 slug: batch-file-optional-parameter
 title: バッチファイルで複数のオプション引数を順不同に扱う
 publishedDate: 2023-01-18
-featuredImage: ./thumbnail.png
 tags:
   - Batch file
   - Windows

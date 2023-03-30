@@ -3,7 +3,6 @@ slug: visual-regression-testing-with-winmerge
 title: WinMergeでVisual Regression Testingしたかった
 publishedDate: 2023-01-17
 updatedDate: 2023-01-18
-featuredImage: ./thumbnail.png
 tags:
   - Visual Regression Testing
   - WinMerge

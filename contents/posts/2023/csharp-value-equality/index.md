@@ -3,7 +3,6 @@ slug: csharp-value-equality
 title: C#でクラスあるいは構造体に値の等価性を定義する
 publishedDate: 2023-01-14
 updatedDate: 2023-03-05
-featuredImage: ./thumbnail.png
 tags:
   - C Sharp
 ---

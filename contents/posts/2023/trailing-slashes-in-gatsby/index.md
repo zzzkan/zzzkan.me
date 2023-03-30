@@ -2,7 +2,6 @@
 slug: trailing-slashes-in-gatsby
 title: Gatsbyのトレイリングスラッシュにちょこっとご用心
 publishedDate: 2023-01-28
-featuredImage: ./thumbnail.png
 tags:
   - Gatsby
 ---
