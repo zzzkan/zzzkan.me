@@ -1,15 +1,18 @@
 import React from "react"
-import { HeadFC } from "gatsby"
-import { Heading, Text } from "@chakra-ui/react"
+import { HeadFC, Link as GatsbyLink } from "gatsby"
+import { Box, Heading, Link, Text } from "@chakra-ui/react"
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout"
 
 const NotFoundPage: React.FC = () => {
   return (
     <Layout>
-      <Heading as={"h1"} size={"xl"} textAlign={"center"} marginBottom={3}>
-        404
-      </Heading>
-      <Text textAlign={"center"}>The page was not found.</Text>
+      <Box textAlign={"center"}>
+        <Heading as={"h1"} size={"xl"}marginBottom={3}>
+          404
+        </Heading>
+        <Text marginBottom={12}>このページはすでに削除されているかURLが間違っている可能性があります。</Text>
+        <Link as={GatsbyLink} to={"/"} marginX={"auto"} color={"tint"}>トップへ戻る</Link>
+      </Box>  
     </Layout>
   )
 }
@@ -17,4 +20,11 @@ const NotFoundPage: React.FC = () => {
 
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head: HeadFC = () => {
+  return (
+    <>
+      <title>ページが見つかりませんでした - blog.zzzkan.me</title>
+      <meta name="robots" content="noindex, nofollow" />
+    </>
+  )
+}
