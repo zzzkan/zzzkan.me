@@ -4,7 +4,7 @@ title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
 updatedDate: 2023-01-31
 tags:
-  - Cloudflare Pages
+  - Cloudflare
 ---
 
 このブログは Gatsby + Cloudflare Pages という構成で作られています。Gatsby のバージョンとしては現在最新の v5 を利用しているのですが Gatsby v5 では[Node 18](https://www.gatsbyjs.com/docs/reference/release-notes/v5.0/#node-18)が必要です。これを Cloudflare Pages でビルドしようとすると Node 18 のインストールで失敗してしまいます。
