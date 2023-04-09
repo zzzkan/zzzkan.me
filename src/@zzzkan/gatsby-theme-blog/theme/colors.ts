@@ -1,12 +1,12 @@
 const colors = {
-  tint: { default: "red.700", _dark: "red.200" },
-  primaryText: { default: "gray.800", _dark: "gray.100" },
-  secondaryText: { default: "gray.600", _dark: "gray.400" },
-  onTintText: { default: "white", _dark: "gray.900" },
-  primaryBackground: { default: "white", _dark: "gray.900" },
+  tint: { default: "red.200", _light: "red.700" },
+  primaryText: { default: "gray.100", _light: "gray.800" },
+  secondaryText: { default: "gray.400", _light: "gray.600" },
+  onTintText: { default: "gray.900", _light: "white" },
+  primaryBackground: { default: "gray.900", _light: "white" },
   secondaryBackground: {
-    default: "RGBA(0, 0, 0, 0.02)",
-    _dark: "RGBA(255, 255, 255, 0.02)",
+    default: "RGBA(255, 255, 255, 0.02)",
+    _light: "RGBA(0, 0, 0, 0.02)",
   },
   highlightCode: {
     default: "RGBA(0, 255, 255, 0.05)",
