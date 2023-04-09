@@ -1,7 +1,7 @@
 ---
 slug: programming-on-usb
 title: USBメモリーを挿すだけで開発環境を整えたい
-publishedDate: 2023-04-08
+publishedDate: 2023-04-09
 tags:
   - Portable App
 ---
