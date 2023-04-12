@@ -1,3 +1,3 @@
 # zzzkan.me
 
-<https://zzzkan.me/>
+zzzkan's profile
