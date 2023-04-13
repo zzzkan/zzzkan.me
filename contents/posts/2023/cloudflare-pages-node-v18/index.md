@@ -2,7 +2,7 @@
 slug: cloudflare-pages-node-v18
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
-updatedDate: 2023-01-31
+updatedDate: 2023-04-14
 tags:
   - Cloudflare
 ---
@@ -22,6 +22,30 @@ tags:
 00:48:13.085 Run `npm config delete prefix` or `nvm use --delete-prefix v18.12.1` to unset it.
 00:48:13.086 Failed to install node version '18'
 ```
+
+## （追記）Node 18 に対応したようです
+
+Node 18 に対応したようです 🎉。
+
+<blockquote class="twitter-tweet">
+  <p lang="en" dir="ltr">
+    In case you missed it, <a href="https://twitter.com/CloudflareDev?ref_src=twsrc%5Etfw">@CloudflareDev</a> Pages now supports Node.js 18 (and above!)<br/><br/>Just add a `NODE_VERSION` environment variable with the value of `18` (or `19` if you want the latest latest) and you&#39;re good to go!
+  </p>
+  &mdash; Walshy (@WalshyDev) <a href="https://twitter.com/WalshyDev/status/1646293635841835008?ref_src=twsrc%5Etfw">April 12, 2023</a>
+</blockquote>
+
+実際に Cloudflare Pages 上で Node 18 が動いていることも確認できました。
+
+```log
+00:24:53.982 Attempting node version '18' from .nvmrc
+00:24:55.147 Downloading and installing node v18.16.0...
+00:24:55.477 Downloading https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.xz...
+00:24:55.830 Computing checksum with sha256sum
+00:24:55.967 Checksums matched!
+00:25:01.231 Now using node v18.16.0 (npm v9.5.1)
+```
+
+この記事では Cloudflare Pages 上でビルドできなかった場合の回避策として GitHub Actions を紹介していました。以下は古い情報にはなりましたが今後も使える方法なので残しておきます。GitHub Action はパブリックリポジトリでは無料なのでビルドを脳死でぶん回せて便利なんですよね。
 
 ## Cloudflare Pages で利用可能な Node バージョン
 
