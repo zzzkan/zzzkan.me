@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
     description:
       "zzzkanのブログです。ソフトウェア関連の話題が多いと思いますが気が向いたことなら何でも書くところ。",
     author: "zzzkan",
+    authorUrl: "https://zzzkan.me/",
     publicationYear: 2023,
     imageUrl: "https://blog.zzzkan.me/banner.png",
   },
