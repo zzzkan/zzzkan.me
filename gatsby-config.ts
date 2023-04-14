@@ -82,9 +82,12 @@ const config: GatsbyConfig = {
                   (post.slug + "/").replace(/\/\/+/g, "/"),
                   site?.siteMetadata?.siteUrl ?? ""
                 ).href;
+                const date = new Date(
+                  `${post.updatedDate ?? post.publishedDate} GMT+0900`
+                ).toUTCString();
                 return {
                   title: `${post.title} - ${site?.siteMetadata?.title}`,
-                  date: post.updatedDate ?? post.publishedDate,
+                  date,
                   description: post.excerpt,
                   url,
                   guid: url,
@@ -96,8 +99,8 @@ const config: GatsbyConfig = {
                   nodes {
                     slug
                     title
-                    publishedDate
-                    updatedDate
+                    publishedDate(formatString: "YYYY-MM-DD")
+                    updatedDate(formatString: "YYYY-MM-DD")
                     excerpt
                   }
                 }
