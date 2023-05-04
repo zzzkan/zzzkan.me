@@ -2,6 +2,10 @@
 slug: pdf-to-image-with-csharp-winrt
 title: C#/WinRTでPDFを画像に変換する
 publishedDate: 2023-02-12
+featuredImage: "./curvd-TOO1RFQEnQk-unsplash.jpg"
+featuredImageAlt: "テーブルの上のタブレットとコーヒーの写真"
+featuredImageCreditText: "CURVD®"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/TOO1RFQEnQk"
 tags:
   - C Sharp
   - Windows

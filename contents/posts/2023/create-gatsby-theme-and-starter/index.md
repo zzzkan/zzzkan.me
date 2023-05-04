@@ -2,6 +2,10 @@
 slug: create-gatsby-theme-and-starter
 title: Gatsby ThemeとStarterを作った
 publishedDate: 2023-01-27
+featuredImage: "./girl-with-red-hat-mWI9FhbS43I-unsplash.jpg"
+featuredImageAlt: "白い本と黒いペンの横にある黒と銀のペンの写真"
+featuredImageCreditText: "Girl with red hat"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/mWI9FhbS43I"
 tags:
   - Gatsby
 ---

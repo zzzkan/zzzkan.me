@@ -3,6 +3,10 @@ slug: visual-regression-testing-with-winmerge
 title: WinMergeでVisual Regression Testingしたかった
 publishedDate: 2023-01-17
 updatedDate: 2023-01-18
+featuredImage: "./glenn-carstens-peters-1F4MukO0UNg-unsplash.jpg"
+featuredImageAlt: "灰色のタイプライターと macbookの写真"
+featuredImageCreditText: "Glenn Carstens-Peters"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/1F4MukO0UNg"
 tags:
   - Visual Regression Testing
   - WinMerge

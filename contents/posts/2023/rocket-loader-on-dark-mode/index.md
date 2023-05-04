@@ -2,6 +2,10 @@
 slug: rocket-loader-on-dark-mode
 title: Rocket Loaderを使うとダークモードがちらつく
 publishedDate: 2023-04-12
+featuredImage: "./spacex-uj3hvdfQujI-unsplash.jpg"
+featuredImageAlt: "ロケット船の写真撮影の写真"
+featuredImageCreditText: "SpaceX"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/uj3hvdfQujI"
 tags:
   - Cloudflare
 ---

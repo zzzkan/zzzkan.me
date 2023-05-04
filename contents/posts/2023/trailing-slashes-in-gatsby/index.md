@@ -2,6 +2,10 @@
 slug: trailing-slashes-in-gatsby
 title: Gatsbyのトレイリングスラッシュにちょこっとご用心
 publishedDate: 2023-01-28
+featuredImage: "./noora-alhammadi-7O9AyHDFzwY-unsplash.jpg"
+featuredImageAlt: "牛乳と氷を入れた使い捨てカップの写真"
+featuredImageCreditText: "Noora AlHammadi"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/7O9AyHDFzwY"
 tags:
   - Gatsby
 ---

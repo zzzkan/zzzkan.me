@@ -3,6 +3,10 @@ slug: cloudflare-pages-node-v18
 title: Cloudflare PagesではNode 18が使えない
 publishedDate: 2023-01-04
 updatedDate: 2023-04-14
+featuredImage: "./tomasz-sroka-eaxgNP4cpY8-unsplash.jpg"
+featuredImageAlt: "灰色の雲の写真"
+featuredImageCreditText: "Tomasz Sroka"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/eaxgNP4cpY8"
 tags:
   - Cloudflare
 ---

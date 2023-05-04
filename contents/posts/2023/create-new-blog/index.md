@@ -2,6 +2,10 @@
 slug: create-new-blog
 title: 個人ブログを作った🐰
 publishedDate: 2023-01-02
+featuredImage: "./sgalagaev-w0rUWZi7jxM-unsplash.jpg"
+featuredImageAlt: "小さなウサギが草の中に座っているの写真"
+featuredImageCreditText: "Ансплэш Степана"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/w0rUWZi7jxM"
 tags:
   - Blog
 ---

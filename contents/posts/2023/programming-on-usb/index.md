@@ -2,6 +2,10 @@
 slug: programming-on-usb
 title: USBメモリーを挿すだけで開発環境を整えたい
 publishedDate: 2023-04-09
+featuredImage: "./brina-blum-Bb_X4JgSqIM-unsplash.jpg"
+featuredImageAlt: "黒のusbフラッシュドライブの写真"
+featuredImageCreditText: "Brina Blum"
+featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/Bb_X4JgSqIM"
 tags:
   - Portable App
 ---
