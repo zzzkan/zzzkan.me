@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "zzzkan.me",
+  "dependencies": {
+    "@cloudflare/pages-plugin-mailchannels": "^0.1.2",
+    "@cloudflare/workers-types": "^4.20230511.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
