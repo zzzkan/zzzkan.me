@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>contact - zzzkan.me</title>
     <meta name="description" content="zzzkan.meの問い合わせフォームです。" />
+    <meta name="robots" content="noindex, nofollow" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>😴</text></svg>"
@@ -15,10 +16,20 @@
     <div class="wrapper">
       <h1>Contact</h1>
       <form data-static-form-name="contact">
-        <label>Email: <input type="email" name="email" /></label>
-        <label>Message: <textarea name="message"></textarea></label>
-        <button type="Submit"></button>
+        <label for="name">Name: </label>
+        <input type="text" name="name" placeholder="zzzkan" required />
+        <label for="email">Email: </label>
+        <input
+          type="email"
+          name="email"
+          placeholder="zzzkan@example.com"
+          required
+        />
+        <label for="message">Message: </label>
+        <textarea name="message"></textarea>
+        <button type="submit">Submit</button>
       </form>
+      <p><a href="/contact">Homeへ戻る</a></p>
     </div>
   </body>
 </html>
