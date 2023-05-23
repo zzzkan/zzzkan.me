@@ -18,6 +18,15 @@ h1 {
 
 a {
   color: #0080ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #cc55ff;
 }
 
 ul li {
