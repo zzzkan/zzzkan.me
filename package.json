@@ -35,6 +35,6 @@
     "@types/react-dom": "^18.0.9",
     "textlint": "^13.0.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0",
-    "typescript": "^4.9.3"
+    "typescript": "^5.0.0"
   }
 }
