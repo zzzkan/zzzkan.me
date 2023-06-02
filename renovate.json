@@ -3,9 +3,7 @@
   "extends": [
     "config:base",
     ":preserveSemverRanges",
-    "group:all",
     "schedule:monthly",
-    ":maintainLockFilesMonthly",
     ":automergePatch",
     ":automergeTypes",
     ":dependencyDashboard",
@@ -13,8 +11,5 @@
     ":prHourlyLimitNone",
     ":timezone(Asia/Tokyo)"
   ],
-  "lockFileMaintenance": {
-    "extends": ["group:all"]
-  },
   "separateMajorMinor": false
 }
