@@ -71,15 +71,15 @@ Import-Module EPS
 $Name = "zzzkan"
 $To = "hoge@example.com"
 $CC = "fuga@example.com"
-$Subject = Invoke-EpsTemplate -Path .\Subject.txt
-$Body = Invoke-EpsTemplate -Path .\Body.txt
+$Subject = Invoke-EpsTemplate -Path .\Subject.txt -Safe -binding @{ Name = $Name }
+$Body = Invoke-EpsTemplate -Path .\Body.txt -Safe -binding @{ Name = $Name }
 
 $Outlook = New-Object -ComObject Outlook.Application
 $Mail = $Outlook.CreateItem(0)
 $Mail.To = $To
 $Mail.CC = $CC
-$Mail.Subject = $Subject
-$Mail.Body = $Body
+$Mail.Subject = [string]$Subject
+$Mail.Body = [string]$Body
 $Inspector = $Mail.GetInspector
 $Inspector.Display()
 ```
