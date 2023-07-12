@@ -49,7 +49,7 @@ $git = "git.exe"
 $process = Start-Process -FilePath $git -ArgumentList @("config", "user.email") -Wait -PassThru
 ```
 
-この場合終了コードは`$process.ExitCode{:powershell}`で取れます。とはいえ呼び出し演算子の方が簡単に書けるので Start-Process 使う理由はとくになさそうです。
+この場合終了コードは`$process.ExitCode{:powershell}`で取れます。とはいえ呼び出し演算子の方が簡単に書けるので、とくに理由がなければ Start-Process 使う必要はなさそうです。
 
 ## 呼び出し演算子の引数
 
