@@ -24,10 +24,6 @@ const config: GatsbyConfig = {
         shikiTheme: "dracula",
         links: [
           {
-            name: "Profile",
-            url: "https://zzzkan.me/",
-          },
-          {
             name: "RSS",
             url: "/rss.xml",
           },
