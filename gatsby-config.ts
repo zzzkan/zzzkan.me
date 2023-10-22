@@ -2,14 +2,14 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "blog.zzzkan.me",
-    siteUrl: "https://blog.zzzkan.me/",
+    title: "zzzkan.me",
+    siteUrl: "https://zzzkan.me/",
     description:
       "zzzkanのブログです。ソフトウェア関連の話題が多いと思いますが気が向いたことなら何でも書くところ。",
     author: "zzzkan",
     authorUrl: "https://zzzkan.me/",
     publicationYear: 2023,
-    imageUrl: "https://blog.zzzkan.me/banner.png",
+    imageUrl: "https://zzzkan.me/banner.png",
   },
   graphqlTypegen: true,
   trailingSlash: "always",
@@ -18,7 +18,7 @@ const config: GatsbyConfig = {
       resolve: "@zzzkan/gatsby-theme-blog",
       options: {
         lang: "ja",
-        basePath: "/",
+        basePath: "/blog",
         contentPath: "contents/posts",
         dateFormatString: "YYYY/MM/DD",
         shikiTheme: "dracula",
@@ -46,14 +46,14 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-sitemap",
       options: {
         excludes: ["/tags/*"],
-        resolveSiteUrl: () => "https://blog.zzzkan.me/",
+        resolveSiteUrl: () => "https://zzzkan.me/",
       },
     },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "blog.zzzkan.me",
-        short_name: "blog.zzzkan.me",
+        name: "zzzkan.me",
+        short_name: "zzzkan.me",
         start_url: "/",
         background_color: "#fff",
         display: "minimal-ui",
@@ -112,9 +112,9 @@ const config: GatsbyConfig = {
               }
             `,
             output: "/rss.xml",
-            title: "RSS Feed - blog.zzzkan.me",
-            feed_url: "https://blog.zzzkan.me/rss.xml",
-            site_url: "https://blog.zzzkan.me/",
+            title: "RSS Feed - zzzkan.me",
+            feed_url: "https://zzzkan.me/rss.xml",
+            site_url: "https://zzzkan.me/",
           },
         ],
       },
