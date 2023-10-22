@@ -26,7 +26,7 @@ export default NotFoundPage;
 export const Head: HeadFC = () => {
   return (
     <>
-      <title>ページが見つかりませんでした - blog.zzzkan.me</title>
+      <title>ページが見つかりませんでした - zzzkan.me</title>
       <meta name="robots" content="noindex, nofollow" />
     </>
   );
