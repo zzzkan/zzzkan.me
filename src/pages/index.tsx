@@ -8,7 +8,14 @@ import {
   ListItem,
   Text,
   UnorderedList,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Button,
+  Flex,
 } from "@chakra-ui/react";
+import {} from "@chakra-ui/react";
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout";
 import { Seo } from "@zzzkan/gatsby-theme-blog/src/components/Seo";
 
@@ -91,6 +98,50 @@ const NotFoundPage: React.FC = () => {
           </UnorderedList>
         </ListItem>
       </UnorderedList>
+      <Heading as={"h2"} size={"lg"} marginBottom={3}>
+        Contact
+      </Heading>
+      <Box as="form" data-static-form-name="contact">
+        <FormControl id="name" isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input
+            type="text"
+            name="name"
+            placeholder="zzzkan"
+            width={"100%"}
+            borderWidth={"1px"}
+            borderColor={"secondaryText"}
+            borderRadius={"md"}
+          />
+        </FormControl>
+        <FormControl id="email" isRequired>
+          <FormLabel>Email</FormLabel>
+          <Input
+            type="email"
+            name="email"
+            placeholder="zzzkan@example.com"
+            width={"100%"}
+            borderWidth={"1px"}
+            borderColor={"secondaryText"}
+            borderRadius={"md"}
+          />
+        </FormControl>
+        <FormControl id="message">
+          <FormLabel>Message</FormLabel>
+          <Textarea
+            name="message"
+            aria-label="コメントフィールド"
+            width={"100%"}
+            height={"xs"}
+            borderWidth={"1px"}
+            borderColor={"secondaryText"}
+            borderRadius={"md"}
+          />
+        </FormControl>
+        <Button type="submit" display={"block"} marginX={"auto"}>
+          Send
+        </Button>
+      </Box>
     </Layout>
   );
 };
