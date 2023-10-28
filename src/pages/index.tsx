@@ -1,25 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { HeadFC } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import {
   Box,
+  Button,
   Heading,
   Link,
   ListItem,
   Text,
   UnorderedList,
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea,
-  Button,
-  Flex,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/react";
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout";
 import { Seo } from "@zzzkan/gatsby-theme-blog/src/components/Seo";
 
-const NotFoundPage: React.FC = () => {
+const HomePage: React.FC = () => {
+  const [email, setEmail] = useState("😴😴😴@😴😴😴");
+  const handleButtonClick = () => {
+    setEmail(
+      String.fromCharCode(
+        137 - 15,
+        110 + 12,
+        125 - 3,
+        30 + 24,
+        65 - 17,
+        21 + 29,
+        59 - 9,
+        18 + 31,
+        66 - 14,
+        26 + 22,
+        77 - 22,
+        35 + 19,
+        70 - 6,
+        106 + 5,
+        125 - 8,
+        93 + 23,
+        126 - 18,
+        90 + 21,
+        124 - 13,
+        77 + 30,
+        73 - 27,
+        95 + 4,
+        128 - 17,
+        102 + 7
+      )
+    );
+  };
   return (
     <Layout>
       <Box textAlign={"center"} marginBottom={6}>
@@ -101,52 +129,18 @@ const NotFoundPage: React.FC = () => {
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Contact
       </Heading>
-      <Box as="form" data-static-form-name="contact">
-        <FormControl id="name" isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            type="text"
-            name="name"
-            placeholder="zzzkan"
-            width={"100%"}
-            borderWidth={"1px"}
-            borderColor={"secondaryText"}
-            borderRadius={"md"}
-          />
-        </FormControl>
-        <FormControl id="email" isRequired>
-          <FormLabel>Email</FormLabel>
-          <Input
-            type="email"
-            name="email"
-            placeholder="zzzkan@example.com"
-            width={"100%"}
-            borderWidth={"1px"}
-            borderColor={"secondaryText"}
-            borderRadius={"md"}
-          />
-        </FormControl>
-        <FormControl id="message">
-          <FormLabel>Message</FormLabel>
-          <Textarea
-            name="message"
-            aria-label="コメントフィールド"
-            width={"100%"}
-            height={"xs"}
-            borderWidth={"1px"}
-            borderColor={"secondaryText"}
-            borderRadius={"md"}
-          />
-        </FormControl>
-        <Button type="submit" display={"block"} marginX={"auto"}>
-          Send
-        </Button>
-      </Box>
+      <Text>X（Twitter）またはメールまでご連絡ください。</Text>
+      <Wrap>
+        <WrapItem>
+          <Button onClick={handleButtonClick}>メールアドレスを表示</Button>
+        </WrapItem>
+        <WrapItem marginY={"auto"}>{email}</WrapItem>
+      </Wrap>
     </Layout>
   );
 };
 
-export default NotFoundPage;
+export default HomePage;
 
 export const Head: HeadFC = () => {
   return <Seo path={"/"} title={"ホーム"} />;
