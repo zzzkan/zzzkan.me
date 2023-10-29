@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import { Box, Flex, Heading, HStack, Link, Spacer } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Link, Spacer } from "@chakra-ui/react";
 import { Title } from "@zzzkan/gatsby-theme-blog/src/components/Title";
 import { ToggleColorModeButton } from "@zzzkan/gatsby-theme-blog/src/components/ToggleColorModeButton";
 import { type SiteMetadataType } from "@zzzkan/gatsby-theme-blog/src/types/siteMetadataType";
@@ -21,15 +21,15 @@ export const Header: React.FC<Props> = ({ title }) => {
         <Title title={title} />
         <Spacer />
         <HStack>
-          <Heading as={"div"} size={"md"} fontWeight={"semibold"} paddingY={3}>
-            <Link
-              as={GatsbyLink}
-              to="/blog"
-              _hover={{ textDecoration: "none" }}
+          <Link as={GatsbyLink} to="/blog" _hover={{ textDecoration: "none" }}>
+            <Button
+              backgroundColor={"primaryBackground"}
+              padding={1}
+              borderRadius={"50%"}
             >
               Blog
-            </Link>
-          </Heading>
+            </Button>
+          </Link>
           <ToggleColorModeButton />
         </HStack>
       </Flex>

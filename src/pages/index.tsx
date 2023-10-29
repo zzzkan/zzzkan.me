@@ -132,7 +132,13 @@ const HomePage: React.FC = () => {
       <Text>X（Twitter）またはメールまでご連絡ください。</Text>
       <Wrap>
         <WrapItem>
-          <Button onClick={handleButtonClick}>メールアドレスを表示</Button>
+          <Button
+            color={"secondaryText"}
+            backgroundColor={"secondaryBackground"}
+            onClick={handleButtonClick}
+          >
+            メールアドレスを表示
+          </Button>
         </WrapItem>
         <WrapItem marginY={"auto"}>{email}</WrapItem>
       </Wrap>
