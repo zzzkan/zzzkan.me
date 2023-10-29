@@ -11,6 +11,7 @@ import {
   UnorderedList,
   Wrap,
   WrapItem,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/react";
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout";
@@ -48,6 +49,7 @@ const HomePage: React.FC = () => {
       )
     );
   };
+  const boxShadowStyle = useColorModeValue("lg", "dark-lg");
   return (
     <Layout>
       <Box textAlign={"center"} marginBottom={6}>
@@ -129,11 +131,11 @@ const HomePage: React.FC = () => {
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Contact
       </Heading>
-      <Text>X（Twitter）またはメールまでご連絡ください。</Text>
-      <Wrap>
+      <Text marginBottom={3}>X（Twitter）またはメールまでご連絡ください。</Text>
+      <Wrap spacing={6} marginBottom={3}>
         <WrapItem>
           <Button
-            color={"secondaryText"}
+            boxShadow={boxShadowStyle}
             backgroundColor={"secondaryBackground"}
             onClick={handleButtonClick}
           >
