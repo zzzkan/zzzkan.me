@@ -5,7 +5,8 @@
         "max": 150
       },
       "no-exclamation-question-mark": false,
-      "ja-no-weak-phrase": false
+      "ja-no-weak-phrase": false,
+      "no-doubled-joshi": false
     }
   },
   "plugins": {
