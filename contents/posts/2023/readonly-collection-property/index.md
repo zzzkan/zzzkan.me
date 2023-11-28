@@ -2,6 +2,7 @@
 slug: readonly-collection-property
 title: C#でコレクションを読み取り専用で公開するには結局どうしたらいい？
 publishedDate: 2023-11-06
+updatedDate: 2023-11-29
 featuredImage: "./karen-vardazaryan-JBrfoV-BZts-unsplash.jpg"
 featuredImageAlt: "車の模型のコレクション"
 featuredImageCreditText: "Karen Vardazaryan"
@@ -159,7 +160,7 @@ public void Test()
 ((ICollection<int>)sample.Collection).Add(4); // これは大丈夫、中身を変更できてしまう
 ```
 
-とは言っても`IReadOnlyList<T>`を実装した具象クラスが必ず`ICollection<T>`を実装している保証は（基本的に）ないわけで、これは普通はやっちゃいけない類の操作になると思います。なので、こういうケースについてはそこまで神経質にならなくてもいいと個人的に思います。結局、リフレクションを使えば何でもできてしまうわけだし。
+とは言っても`IReadOnlyList<T>`を実装した具象クラスが必ず`ICollection<T>`を実装している保証は（基本的に）ないわけで、これは普通は**やっちゃいけない類の操作**になると思います。なので、こういうケースについてはそこまで神経質にならなくてもいいと個人的に思います。結局、リフレクションを使えば何でもできてしまうわけだし。
 
 ## 結局どうすれば…？
 
@@ -181,17 +182,17 @@ public class Sample
 }
 ```
 
-`IReadOnlyList<T>`はコレクションに対する読み取り専用の操作が最もよく定義されていて便利です。そのため、わざわざ`IEnumerable<T>`や`IReadOnlyCollection<T>`にする理由がない限りは`IReadOnlyList<T>`を使うのが良いと思います。
+具象クラスではなく`IReadOnlyList<T>`として公開しておけば内部実装を後から変更できます。たぶん一般的な用途であれば内部実装は`List<T>`や配列で十分な気がします。より堅牢な設計が必要なら`ReadOnlyCollection<T>`で実装するのが良いと思います。
 
-そして、具象クラスではなく`IReadOnlyList<T>`として公開しておけば内部実装を後から変更できます。たぶん一般的な用途であれば内部実装は`List<T>`や配列で十分な気がします。より堅牢な設計が必要なら`ReadOnlyCollection<T>`としてラップすると良いと思います。（そんなにないケースだと思うのですが）内部実装上イミュータブルであることに意味があるなら`ImmutableList<T>`を使うのも１つの手です。また、将来より便利な`IReadOnlyList<T>`を実装した別のコレクションを内部実装に使えるかもしれないです。
-
-ようするに内部実装を「先延ばし」にできます。「先延ばし」と書くとなんかあまり良くないことな気がしますが、いったん具象クラスで公開してしまうと他の実装に変更することは難しくなります。ソフトウェアは日々進歩するものだと思うので、公開している API を変えずに内部実装を変えられるのはとても良いことだと思います。
+またインターフェイスは、とくに`IEnumerable<T>`などにする理由がない限り、もっとも利便性の高い`IReadOnlyList<T>`を使うのが良いです。
 
 ## パフォーマンスが気になる場合
 
 インターフェイスを介すると一般的にパフォーマンスが落ちます。これは仮想呼び出しのオーバーヘッドがあるからであったりインライン化できないであったりまあいろいろあると思います。
 
-そうすると「`IReadOnlyList<T>`を介して`ReadOnlyCollection<T>`を公開する」のではなく「`ReadOnlyCollection<T>`として公開する」方が良いのではという話が出てきそうです。ただ、実はこの 2 つについてパフォーマンスにあまり差はなかったりします。
+### ReadOnlyCollectionは？
+
+そうすると具象クラスである`ReadOnlyCollection<T>`で公開した方が良いのではという話が出てきそうです。ただ、実はパフォーマンスはよくならなかったりします。
 
 | Method                      |     Mean |    Error |   StdDev |
 | --------------------------- | -------: | -------: | -------: |
@@ -251,30 +252,13 @@ public class ReadOnlyCollection<T>: IList<T>, IList, IReadOnlyList<T>
 }
 ```
 
-`IReadOnlyList<T>`を介していてもいなくても、内部的には結局`IList<T>`を介した呼び出しになるため最適化がかからずパフォーマンスはそこまで変わらないようです。パフォーマンスを気にする場合、`ReadOnlyCollection<T>`が遅いのは覚えておいても良いかもしれないです。
+`IReadOnlyList<T>`を介していてもいなくても、内部的には結局`IList<T>`を介した呼び出しになるため最適化がかからずパフォーマンスはそこまで変わりません。パフォーマンスを気にする場合、`ReadOnlyCollection<T>`が遅いのは覚えておいて損はないと思います。
 
-ちなみに`List<T>`は実装が工夫されていてインターフェイスを介するより`List<T>`のままの方がパフォーマンスは良いです。[List のリファレンス](https://github.com/microsoft/referencesource/blob/master/mscorlib/system/collections/generic/list.cs)を見てみると次のようになっています。
+こういった面もあって`ReadOnlyCollection<T>`ってなんか使いづらいなあと思っています。
 
-```csharp
-public class List<T> : IList<T>, System.Collections.IList, IReadOnlyList<T>
-{
-    private T[] _items; // 配列として保持している
-...
-    public Enumerator GetEnumerator() { // List<T>から呼ばれた場合Enumeratorという構造体を返す
-        return new Enumerator(this);
-    }
+### ReadOnlySpanを使おう
 
-    /// <internalonly/>
-    IEnumerator<T> IEnumerable<T>.GetEnumerator() { // インターフェイス越しに呼ばれた場合IEnumerator<T>を返す。
-        return new Enumerator(this);                // このとき構造体（値型）→インターフェイス（参照型）へのボックス化が発生する
-    }
-...
-}
-```
-
-まず、`List<T>`は内部的には配列なので余計なインターフェイスを介していないです。それから`GetEnumerator()`の実装は工夫されていて、`List<T>`から呼び出された場合は独自の`Enumerator`構造体を返すようになっていて最適化がかかるよう工夫されています。一方で、インターフェイスを介して`GetEnumerator()`を呼び出すと構造体（値型）からインターフェイス（参照型）へのボックス化が発生してパフォーマンスが落ちます。
-
-このことを考えて`IReadOnlyList<T>`では`foreach`ではなく`for`を使っておいた方が安全かもしれないです。まあただ、そこまでパフォーマンスを気にする局面では大人しく[ReadOnlySpan](https://learn.microsoft.com/ja-jp/dotnet/api/system.readonlyspan-1)として公開したほうがよさそうです。
+で、パフォーマンスを気にする局面では[ReadOnlySpan](https://learn.microsoft.com/ja-jp/dotnet/api/system.readonlyspan-1)が良いです。
 
 | Method                |     Mean |    Error |   StdDev |
 | --------------------- | -------: | -------: | -------: |
@@ -318,9 +302,36 @@ public int ReadOnlySpanBenchmark()
 
 ```
 
-`ReadOnlySpan<T>`は`Span<T>`の読み取り専用版で、`Span<T>`は配列のような連続したメモリ領域を表す構造体です。なので、データの集合を抽象化している`IEnumerable<T>`を実装したコレクションとは少し違った概念になります。
+配列を直接公開した場合と比較してもほとんど変わらないパフォーマンスが出ます。
 
-`ReadOnlySpan<T>`だと、LINQ をはじめとした便利な操作ができなくなりますが、読み取り専用にしたうえで配列を直接公開した場合と変わらないパフォーマンスを出せます。
+この`ReadOnlySpan<T>`は`Span<T>`の読み取り専用版で、`Span<T>`は配列のような連続したメモリ領域を表す構造体です。もはやコレクションではない…ので LINQ のような便利な操作もできないです。でも、速いは正義。
+
+### （ちなみに）Listは…
+
+ちなみに`List<T>`は実装が工夫されていてインターフェイスを介するより`List<T>`のままの方が速いです。[List のリファレンス](https://github.com/microsoft/referencesource/blob/master/mscorlib/system/collections/generic/list.cs)を見てみると次のようになっています。
+
+```csharp
+public class List<T> : IList<T>, System.Collections.IList, IReadOnlyList<T>
+{
+    private T[] _items; // 配列として保持している
+...
+    public Enumerator GetEnumerator() { // List<T>から呼ばれた場合Enumeratorという構造体を返す
+        return new Enumerator(this);
+    }
+
+    /// <internalonly/>
+    IEnumerator<T> IEnumerable<T>.GetEnumerator() { // インターフェイス越しに呼ばれた場合IEnumerator<T>を返す。
+        return new Enumerator(this);                // このとき構造体（値型）→インターフェイス（参照型）へのボックス化が発生する
+    }
+...
+}
+```
+
+まず、`List<T>`は内部的には配列です。それから`GetEnumerator()`の実装が工夫されていて、`List<T>`から呼び出された場合は独自の`Enumerator`構造体を返すようになっていて最適化がかかるよう工夫されています。一方で、インターフェイスを介して`GetEnumerator()`を呼び出すとむしろ構造体からインターフェイスへのボックス化が発生するので遅いです。
+
+このことを考えて`IReadOnlyList<T>`では`foreach`ではなく`for`を使っておいた方が安全かもしれないです。
+
+と言っておきながら、同時にそこまで気にしなくてもいいのかもとも思ってます。気にする必要がある場面では、おそらく`IReadOnlyList<T>`ではなく、`ReadOnlySpan<T>`になってるはずだからです。
 
 ## 終わりに
 
