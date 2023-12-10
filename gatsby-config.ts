@@ -24,16 +24,16 @@ const config: GatsbyConfig = {
         shikiTheme: "dracula",
         links: [
           {
-            name: "RSS",
-            url: "/rss.xml",
-          },
-          {
             name: "GitHub",
             url: "https://github.com/zzzkan",
           },
           {
             name: "Twitter",
             url: "https://twitter.com/_zzzkan",
+          },
+          {
+            name: "RSS",
+            url: "/rss.xml",
           },
         ],
       },
