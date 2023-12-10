@@ -1,22 +1,7 @@
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
 import { HeadFC } from "gatsby";
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Heading,
-  HStack,
-  Link,
-  ListItem,
-  Text,
-  UnorderedList,
-  Wrap,
-  WrapItem,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import {} from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, HStack, Link } from "@chakra-ui/react";
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout";
 import { Seo } from "@zzzkan/gatsby-theme-blog/src/components/Seo";
 
