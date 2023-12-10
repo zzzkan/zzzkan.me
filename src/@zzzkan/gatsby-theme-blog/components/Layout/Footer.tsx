@@ -36,7 +36,7 @@ export const Footer: React.FC<Props> = ({ author, publicationYear, links }) => {
           </div>
         </HStack>
       </Center>
-      <Flex alignItems={"end"}>
+      <Flex alignItems={"end"} marginBottom={3}>
         <Copyright author={author} publicationYear={publicationYear} />
         <Spacer />
         <ExternalLinks links={links} />
