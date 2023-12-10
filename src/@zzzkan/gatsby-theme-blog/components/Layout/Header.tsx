@@ -21,6 +21,15 @@ export const Header: React.FC<Props> = ({ title }) => {
         <Title title={title} />
         <Spacer />
         <HStack>
+          <Link as={GatsbyLink} to="/about" _hover={{ textDecoration: "none" }}>
+            <Button
+              backgroundColor={"primaryBackground"}
+              padding={1}
+              borderRadius={"50%"}
+            >
+              About
+            </Button>
+          </Link>
           <Link as={GatsbyLink} to="/blog" _hover={{ textDecoration: "none" }}>
             <Button
               backgroundColor={"primaryBackground"}
