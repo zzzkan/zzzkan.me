@@ -8,9 +8,7 @@ featuredImageAlt: "灰色のタイプライターと macbookの写真"
 featuredImageCreditText: "Glenn Carstens-Peters"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/1F4MukO0UNg"
 tags:
-  - Visual Regression Testing
-  - WinMerge
-  - Windows
+  - Test
 ---
 
 ここ最近 Visual Regression Testing（VRT）というものが Web フロントエンド周辺で普及しつつあるようです。実はこのブログのために作成した [Gatsby Theme](https://github.com/zzzkan/gatsby-theme-blog) の CI でも簡単にですが Playwright による VRT を実行してみたりしてます。
