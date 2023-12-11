@@ -101,6 +101,15 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-twitter",
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["G-EWT289RFJH"],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
   ],
 };
 

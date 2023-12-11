@@ -22,6 +22,7 @@
     "@zzzkan/gatsby-theme-blog": "^0.11.0",
     "gatsby": "^5.3.3",
     "gatsby-plugin-feed": "^5.3.1",
+    "gatsby-plugin-google-gtag": "^5.12.3",
     "gatsby-plugin-manifest": "^5.3.1",
     "gatsby-plugin-sitemap": "^6.10.0",
     "gatsby-plugin-twitter": "^5.8.0",
