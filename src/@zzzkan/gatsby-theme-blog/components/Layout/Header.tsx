@@ -1,9 +1,18 @@
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import { Box, Button, Flex, HStack, Link, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  IconButton,
+  Link,
+  Spacer,
+} from "@chakra-ui/react";
 import { Title } from "@zzzkan/gatsby-theme-blog/src/components/Title";
 import { ToggleColorModeButton } from "@zzzkan/gatsby-theme-blog/src/components/ToggleColorModeButton";
 import { type SiteMetadataType } from "@zzzkan/gatsby-theme-blog/src/types/siteMetadataType";
+import { FaRss } from "@react-icons/all-files/fa/FaRss";
 
 type Props = Pick<SiteMetadataType, "title">;
 
@@ -40,6 +49,16 @@ export const Header: React.FC<Props> = ({ title }) => {
             </Button>
           </Link>
           <ToggleColorModeButton />
+          <IconButton
+            aria-label={"RSS"}
+            as={"a"}
+            href={"https://zzzkan.me/rss.xml"}
+            variant={"ghost"}
+            isRound={true}
+            size={"sm"}
+            fontSize={"xl"}
+            icon={<FaRss />}
+          />
         </HStack>
       </Flex>
     </Box>
