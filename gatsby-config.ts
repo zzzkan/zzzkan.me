@@ -27,7 +27,6 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        excludes: ["/tags/*"],
         resolveSiteUrl: () => "https://zzzkan.me/",
       },
     },
