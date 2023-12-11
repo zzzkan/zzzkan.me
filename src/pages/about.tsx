@@ -150,7 +150,18 @@ const AboutPage: React.FC = () => {
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Contact
       </Heading>
-      <Text>X（Twitter）までご連絡ください。</Text>
+      <Text>
+        <Link
+          href={
+            "https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAFOjdtFUMDNCTDc1WUZQT09EODlRWFFET01QWE85My4u"
+          }
+          target={"_blank"}
+          rel={"noreferrer"}
+          color={"tint"}
+        >
+          問い合わせフォーム（Microsoft Forms）
+        </Link>
+      </Text>
       <Divider as={"hr"} marginY={9} />
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Privacy Policy
