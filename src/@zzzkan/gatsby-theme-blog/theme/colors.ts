@@ -5,8 +5,8 @@ const colors = {
   onTintText: { default: "gray.900", _light: "white" },
   primaryBackground: { default: "gray.900", _light: "white" },
   secondaryBackground: {
-    default: "RGBA(255, 255, 255, 0.02)",
-    _light: "RGBA(0, 0, 0, 0.02)",
+    default: "RGBA(255, 255, 255, 0.03)",
+    _light: "RGBA(0, 0, 0, 0.03)",
   },
   highlightCode: {
     default: "RGBA(0, 255, 255, 0.05)",
