@@ -22,20 +22,6 @@ const config: GatsbyConfig = {
         contentPath: "contents/posts",
         dateFormatString: "YYYY/MM/DD",
         shikiTheme: "dracula",
-        links: [
-          {
-            name: "GitHub",
-            url: "https://github.com/zzzkan",
-          },
-          {
-            name: "Twitter",
-            url: "https://twitter.com/_zzzkan",
-          },
-          {
-            name: "RSS",
-            url: "/rss.xml",
-          },
-        ],
       },
     },
     {

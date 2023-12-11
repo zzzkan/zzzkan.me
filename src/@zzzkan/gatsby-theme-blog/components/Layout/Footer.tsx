@@ -6,18 +6,17 @@ import {
   Flex,
   Heading,
   HStack,
+  Link,
   Spacer,
   Text,
 } from "@chakra-ui/react";
-import { Copyright } from "@zzzkan/gatsby-theme-blog/src/components/Copyright";
-import { ExternalLinks } from "@zzzkan/gatsby-theme-blog/src/components/ExternalLinks";
 import { type SiteMetadataType } from "@zzzkan/gatsby-theme-blog/src/types/siteMetadataType";
 import { type ThemeOptionType } from "@zzzkan/gatsby-theme-blog/src/types/themeOptionType";
 
 type Props = Pick<SiteMetadataType, "author" | "publicationYear"> &
   Pick<ThemeOptionType, "links">;
 
-export const Footer: React.FC<Props> = ({ author, publicationYear, links }) => {
+export const Footer: React.FC<Props> = () => {
   return (
     <Box as={"footer"} position={"sticky"} top={"100vh"}>
       <Center marginBottom={3}>
@@ -36,10 +35,19 @@ export const Footer: React.FC<Props> = ({ author, publicationYear, links }) => {
           </div>
         </HStack>
       </Center>
-      <Flex alignItems={"end"} marginBottom={3}>
-        <Copyright author={author} publicationYear={publicationYear} />
+      <Flex alignItems={"end"}>
         <Spacer />
-        <ExternalLinks links={links} />
+        <Text fontSize={"sm"}>
+          © 2023 zzzkan, Built with{" "}
+          <Link
+            href={"https://www.gatsbyjs.com/"}
+            target={"_blank"}
+            rel={"noreferrer"}
+            color={"tint"}
+          >
+            Gatsby
+          </Link>
+        </Text>
       </Flex>
     </Box>
   );
