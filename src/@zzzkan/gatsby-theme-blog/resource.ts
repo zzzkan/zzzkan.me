@@ -3,7 +3,7 @@ export const resource = {
   FeaturedImageLinkAltText: (pageName: string) =>
     `アイキャッチ画像 (${pageName})`,
   ToggleColorModeLabelText: "カラーモードを変更",
-  AllPostsText: "記事一覧",
+  AllPostsText: "All Posts",
   PreviousPageText: "前の記事",
   NextPageText: "次の記事",
   RelatedPostsText: "関連記事",

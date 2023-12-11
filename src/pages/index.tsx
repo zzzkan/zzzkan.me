@@ -32,5 +32,13 @@ const HomePage: React.FC = () => {
 export default HomePage;
 
 export const Head: HeadFC = () => {
-  return <Seo path={"/"} title={"ホーム"} />;
+  return (
+    <Seo
+      path={"/"}
+      title={"Home"}
+      description={
+        "zzzkanのサイトです。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
+      }
+    />
+  );
 };
