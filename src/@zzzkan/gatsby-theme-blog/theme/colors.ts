@@ -9,7 +9,7 @@ const colors = {
     _light: "RGBA(0, 0, 0, 0.03)",
   },
   highlightCode: {
-    default: "RGBA(0, 255, 255, 0.05)",
+    default: "RGBA(255, 255, 150, 0.07)",
   },
 };
 
