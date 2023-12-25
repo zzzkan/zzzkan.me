@@ -9,6 +9,7 @@ featuredImageCreditText: "Karen Vardazaryan"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/%E3%83%A9%E3%83%83%E3%82%AF%E3%81%AE%E3%83%80%E3%82%A4%E3%82%AD%E3%83%A3%E3%82%B9%E3%83%88%E3%82%AB%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-JBrfoV-BZts"
 tags:
   - C Sharp
+  - .NET
 ---
 
 C#でコレクションをプロパティなどで公開するとき `List<T>`や配列のまま公開すると、中身が変更できてしまうため外部から意図しない変更が加えられる可能性があります。というかこういった公開のされ方がされていると「外部から変更してもいい」という意図を感じてしまうので、変更して欲しくない場合は読み取り専用でなるべく公開したいです。
@@ -190,7 +191,7 @@ public class Sample
 
 インターフェイスを介すると一般的にパフォーマンスが落ちます。これは仮想呼び出しのオーバーヘッドがあるからであったりインライン化できないであったりまあいろいろあると思います。
 
-### ReadOnlyCollectionは？
+### ReadOnlyCollection は？
 
 そうすると具象クラスである`ReadOnlyCollection<T>`で公開した方が良いのではという話が出てきそうです。ただ、実はパフォーマンスはよくならなかったりします。
 
@@ -256,7 +257,7 @@ public class ReadOnlyCollection<T>: IList<T>, IList, IReadOnlyList<T>
 
 こういった面もあって`ReadOnlyCollection<T>`ってなんか使いづらいなあと思っています。
 
-### ReadOnlySpanを使おう
+### ReadOnlySpan を使おう
 
 で、パフォーマンスを気にする局面では[ReadOnlySpan](https://learn.microsoft.com/ja-jp/dotnet/api/system.readonlyspan-1)が良いです。
 
@@ -306,7 +307,7 @@ public int ReadOnlySpanBenchmark()
 
 この`ReadOnlySpan<T>`は`Span<T>`の読み取り専用版で、`Span<T>`は配列のような連続したメモリ領域を表す構造体です。もはやコレクションではない…ので LINQ のような便利な操作もできないです。でも、速いは正義。
 
-### （ちなみに）Listは…
+### （ちなみに）List は…
 
 ちなみに`List<T>`は実装が工夫されていてインターフェイスを介するより`List<T>`のままの方が速いです。[List のリファレンス](https://github.com/microsoft/referencesource/blob/master/mscorlib/system/collections/generic/list.cs)を見てみると次のようになっています。
 

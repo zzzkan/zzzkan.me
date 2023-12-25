@@ -9,6 +9,7 @@ featuredImageCreditText: "Hitesh Choudhary"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/pMnw5BSZYsA"
 tags:
   - C Sharp
+  - .NET
 ---
 
 C#においてクラスは参照型なので`Equals{:txt}`や`=={:txt}`では参照の等価性（参照が同一か）が評価されます。クラスを値の等価性（値が同一か）で評価したい場合は別の実装が必要になります。また、構造体は値型で値の等価性を評価しますがこの際 boxing が発生したりなどでパフォーマンスが落ちます。そのため構造体の場合もやはり別の実装をした方が良いこと多いです。
