@@ -112,7 +112,7 @@ const AboutPage: React.FC = () => {
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         My fave 🐇
       </Heading>
-      <UnorderedList marginBottom={3}>
+      <UnorderedList>
         <ListItem>
           <Link
             href={"https://twitter.com/komamanju"}
@@ -147,22 +147,7 @@ const AboutPage: React.FC = () => {
           （もこもこでかわいい）
         </ListItem>
       </UnorderedList>
-      <Heading as={"h2"} size={"lg"} marginBottom={3}>
-        Contact
-      </Heading>
-      <Text>
-        <Link
-          href={
-            "https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAFOjdtFUMDNCTDc1WUZQT09EODlRWFFET01QWE85My4u"
-          }
-          target={"_blank"}
-          rel={"noreferrer"}
-          color={"tint"}
-        >
-          問い合わせフォーム（Microsoft Forms）
-        </Link>
-      </Text>
-      <Divider as={"hr"} marginY={9} />
+      <Divider as={"hr"} marginY={6} />
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Privacy Policy
       </Heading>
@@ -195,8 +180,23 @@ const AboutPage: React.FC = () => {
       <Text>
         当サイトからのリンクやバナーなどの移動先で提供される情報、サービス等について一切の責任を負いません。
       </Text>
-      <Text>
+      <Text marginBottom={3}>
         当サイトに掲載されている情報は、可能な限り正確な情報を提供するよう努めていますが、正確性や安全性を保証するものではありません。また、情報は告知なしに変更および削除されることがあります。
+      </Text>
+      <Heading as={"h2"} size={"lg"} marginBottom={3}>
+        Contact
+      </Heading>
+      <Text>
+        <Link
+          href={
+            "https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAFOjdtFUMDNCTDc1WUZQT09EODlRWFFET01QWE85My4u"
+          }
+          target={"_blank"}
+          rel={"noreferrer"}
+          color={"tint"}
+        >
+          問い合わせフォーム（Microsoft Forms）
+        </Link>
       </Text>
     </Layout>
   );
