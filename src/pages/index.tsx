@@ -48,7 +48,7 @@ export const Head: HeadFC = () => {
       path={"/"}
       title={"Home"}
       description={
-        "zzzkanのサイトです。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
+        "zzzkanのウェブサイトです。ソフトウェア関連の話題が多いと思いますが気が向いたことなら何でも書くところ。アルフォートは水色派です。"
       }
     />
   );

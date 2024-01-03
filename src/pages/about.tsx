@@ -210,7 +210,7 @@ export const Head: HeadFC = () => {
       path={"/about"}
       title={"About"}
       description={
-        "zzzkanおよにこのサイトについて説明しています。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
+        "zzzkanとこのサイトについて説明するページです。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
       }
     />
   );
