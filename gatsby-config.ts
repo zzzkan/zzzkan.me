@@ -105,9 +105,6 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: ["G-EWT289RFJH"],
-        pluginConfig: {
-          head: true,
-        },
       },
     },
   ],
