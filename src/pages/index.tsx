@@ -42,10 +42,11 @@ const HomePage: React.FC = () => {
 
 export default HomePage;
 
-export const Head: HeadFC = () => {
+export const Head: HeadFC = ({ location }) => {
+  const { pathname } = location;
   return (
     <Seo
-      path={"/"}
+      path={pathname}
       title={"Home"}
       description={
         "zzzkanのウェブサイトです。ソフトウェア関連の話題が多いと思いますが気が向いたことなら何でも書くところ。アルフォートは水色派です。"

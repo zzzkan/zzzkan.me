@@ -204,10 +204,11 @@ const AboutPage: React.FC = () => {
 
 export default AboutPage;
 
-export const Head: HeadFC = () => {
+export const Head: HeadFC = ({ location }) => {
+  const { pathname } = location;
   return (
     <Seo
-      path={"/about"}
+      path={pathname}
       title={"About"}
       description={
         "zzzkanとこのサイトについて説明するページです。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
