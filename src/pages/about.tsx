@@ -76,6 +76,17 @@ const AboutPage: React.FC = () => {
             @zzzkan
           </Link>
         </ListItem>
+        <ListItem>
+          しずかなインターネット:{" "}
+          <Link
+            href={"https://sizu.me/zzzkan"}
+            target={"_blank"}
+            rel={"noreferrer"}
+            color={"tint"}
+          >
+            @zzzkan
+          </Link>
+        </ListItem>
       </UnorderedList>
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Works
