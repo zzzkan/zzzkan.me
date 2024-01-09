@@ -9,34 +9,46 @@ import {
   HStack,
   Link,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
+import { FountainParticles } from "../components/FountainParticles";
+import { SnowParticles } from "../components/SnowParticles";
 import { Layout } from "@zzzkan/gatsby-theme-blog/src/components/Layout";
 import { Seo } from "@zzzkan/gatsby-theme-blog/src/components/Seo";
 
 const HomePage: React.FC = () => {
+  const { colorMode } = useColorMode();
   return (
-    <Layout>
-      <Flex alignItems={"center"} justifyContent={"center"} height={"50vh"}>
-        <Box>
-          <Heading as={"h1"} size={"4xl"}>
-            zzzkan.me
-          </Heading>
-          <Text fontSize={"sm"} marginBottom={3}>
-            zzzkan's website
-          </Text>
-          <Center>
-            <HStack spacing={"6"}>
-              <Link as={GatsbyLink} to="/about" color={"tint"} fontSize={"xl"}>
-                About
-              </Link>
-              <Link as={GatsbyLink} to="/blog" color={"tint"} fontSize={"xl"}>
-                Blog
-              </Link>
-            </HStack>
-          </Center>
-        </Box>
-      </Flex>
-    </Layout>
+    <>
+      <Layout>
+        <Flex alignItems={"center"} justifyContent={"center"} height={"50vh"}>
+          <Box>
+            <Heading as={"h1"} size={"4xl"}>
+              zzzkan.me
+            </Heading>
+            <Text fontSize={"sm"} marginBottom={3}>
+              zzzkan's website
+            </Text>
+            <Center>
+              <HStack spacing={"6"}>
+                <Link
+                  as={GatsbyLink}
+                  to="/about"
+                  color={"tint"}
+                  fontSize={"xl"}
+                >
+                  About
+                </Link>
+                <Link as={GatsbyLink} to="/blog" color={"tint"} fontSize={"xl"}>
+                  Blog
+                </Link>
+              </HStack>
+            </Center>
+          </Box>
+        </Flex>
+      </Layout>
+      {colorMode === "light" ? <FountainParticles /> : <SnowParticles />}
+    </>
   );
 };
 
