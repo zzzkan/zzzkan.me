@@ -79,21 +79,11 @@ export const onRequest: PagesFunction = mailChannelsPlugin({
 
 personalizations が送信先、from が送信元の情報になります。他にも cc など情報も設定できるようです。詳細は[Transactional API](https://api.mailchannels.net/tx/v1/documentation)を見てみてください。
 
-これで必要最低限の実装で問い合わせフォームを作成できました。ここまで 30 分もかからなかったと思います。ちなみに作成したフォームは以下です。
-
-[contact - zzzkan.me](https://zzzkan.me/contact)
-
-とりあえず満足です。もっとこりたい場合はプラグインでは融通が利かないので自前で実装するのがよさそうです。
+これで必要最低限の実装で問い合わせフォームを作成できました。ここまで 30 分もかからなかったと思います。とりあえず満足です。
 
 ### （補足）送信ドメイン認証
 
 送信元メールアドレスは簡単に詐称（なりすまし）できるため、 Sender Policy Framework（SPF）や DomainKeys Identified Mail（DKIM）といった認証が利用されます。これらが正しく設定されていない場合、メールがスパムとして判定される場合があるので注意が必要です。
-
-SPF なんかは以下のような DNS レコードを追加しておくだけなのでついでにやっておくとよいと思います。
-
-| example.com | type | value                                                                      |
-| ----------- | ---- | -------------------------------------------------------------------------- |
-| @           | TXT  | v=spf1 include:\_spf.mx.cloudflare.net include:relay.mailchannels.net -all |
 
 ## 参考
 

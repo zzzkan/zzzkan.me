@@ -127,7 +127,7 @@ public Task FormTest()
 
 ![Windows Formsの差分](./winform-diff.png)
 
-簡単に UI ベースのスナップショットテストが実行できました。ただし、画像比較する場合は Comparer（スナップショットの比較方法）に注意が必要そうです。デフォルトでは単なるバイナリ比較なので、差分なしと判定して欲しい状態であっても差分ありと判定してしまうことがありますす。このままでは非常に不安定なテストになってしまうので、**テスト対象に合わせて Comparer を変更する**ことを強くおすすめします。
+簡単に UI ベースのスナップショットテストが実行できました。ただし、画像比較する場合は Comparer（スナップショットの比較方法）に注意が必要そうです。デフォルトでは単なるバイナリ比較なので、差分なしと判定して欲しい状態であっても差分ありと判定されてしまいます。このままでは非常に不安定なテストになってしまうので、**テスト対象に合わせて Comparer を変更する**必要があります。
 
 Comparer の変更方法は[comparer.md](https://github.com/VerifyTests/Verify/blob/main/docs/comparer.md)を参照してください。たとえば、[Verify.ImageMagick](https://github.com/VerifyTests/Verify.ImageMagick)など準備された Comparer もいくつか存在しているので自分に合うものを選ぶとよいと思います。ちなみに、Verify.ImageMagick はたとえば以下のようにして比較方法を設定できます。
 

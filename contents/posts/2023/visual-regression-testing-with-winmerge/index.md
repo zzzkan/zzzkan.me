@@ -25,11 +25,9 @@ VRT 導入の選択肢ですがたとえば以下の記事にもあるように�
 
 ただ、Web フロントエンド周辺で普及しているようなので当たり前なのですがブラウザを前提にしたものが多く、Web フロントエンド以外のプロジェクトでの導入がためらわれるものも多そうです。[reg-suit](https://github.com/reg-viz/reg-suit)なんかは機能がシンプル（画像の差分検出だけ）で Web フロントエンド以外のプロジェクトでも導入しやすそうなのですが、Node.js や依存関係のインストールはやはり必要です。
 
-許可されていないソフトウェアはインストールできねえ…という悲しい声が聞こえてきた気がします。
+## WinMerge
 
-## WinMerge の出番
-
-何らからの事情で VRT として作りこまれているツールを安易に使えない場面も考えられます。このような環境であっても高確率で初期装備されているソフトウェアの 1 つに[WinMerge](https://github.com/winmerge/winmerge)があると思っています。この WinMerge 実は画像比較もいけます。ということで WinMerge で VRT っぽいことができないか試してみます。
+老舗差分ツールである[WinMerge](https://github.com/winmerge/winmerge)は古く使われているツールの 1 つではないでしょうか。この WinMerge ですが実は画像比較もいけます。ということで、今回は WinMerge で VRT っぽいことができないか試したいです。
 
 なおここでは WinMerge v2.16.24.0 を用いました。また、画像比較とレポート生成のみを扱い比較画像の生成については扱いません。
 
@@ -99,72 +97,6 @@ WinMergeU.exe は WinMerge のパス、 expected と actual は比較対象、�
 | ReportFiles/IncludeFileCmpReport=1           | 「ファイル比較レポートを含める」を有効化                                                                         |
 
 コマンド１発で画像比較からレポートの作成までできるようになりました。正直なところここまでできるとは思ってませんでした。バッチファイルなんかをしっかり書けばかなり便利になりそう。
-
-### （追記）簡単なバッチファイル
-
-とりあえず簡単なバッチファイルを書いてみました。
-
-```bat
-:: diff-image.cmd
-
-@echo off
-setlocal
-
-::WinMergeのパスを設定（適宜修正…）
-set winmerge_path="C:\Users\user\AppData\Local\Programs\WinMerge\WinMergeU.exe"
-
-if "%1"=="" (
-    echo Error : missing required parameter 'expected'
-    exit /b 1
-)
-set expected_path=%~1
-shift
-
-if "%1"=="" (
-    echo Error : missing required parameter 'actual'
-    exit /b 1
-)
-set actual_path=%~1
-shift
-
-:loop
-if not "%1"=="" (
-    if "%1"=="/r" (
-        if "%2"=="" (
-            echo Error : missing required parameter 'reportpath'
-            exit /b 1
-        )
-        set report_path=%~2
-        shift
-    )
-    if "%1"=="/u" (
-        xcopy /F /S /E /I /Y %actual_path% %expected_path%
-        exit /b 0
-    )
-    shift
-    goto :loop
-)
-
-set config_parameter=/noprefs /cfg Settings/DirViewExpandSubdirs=1 /cfg Settings/EnableImageCompareInFolderCompare=1 /cfg ReportFiles/ReportType=2 /cfg ReportFiles/IncludeFileCmpReport=1
-if not "%report_path%"=="" set report_parameter=/noninteractive /minimize /or %report_path%
-
-%winmerge_path% %expected_path% %actual_path% /r /u /wr %config_parameter% %report_parameter%
-
-exit /b 0
-```
-
-使い方は以下です。
-
-```bat
-.\diff-image.cmd expected actual [/u] [/r peprtpath]
-```
-
-次のオプションが利用できます。オプションが指定されていない場合は WinMerge の比較結果画面を表示します。
-
-- /u ： expected を actual で更新する
-- /r peprtpath ：レポートを出力する
-
-できれば /u による更新は WinMerge のマージで行えるようにしてみたかったのですがうまく動作させられなかったためあきらめて単純に`xcopy`で上書きしています。
 
 ## 参考
 

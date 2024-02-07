@@ -25,7 +25,7 @@ tags:
 
 - [Next](https://nextjs.org/)
 - [Gatsby](https://www.gatsbyjs.com/)
-- [Astro](https://astro.build/)（React も使える）
+- [Astro](https://astro.build/)（React も使える？）
 - etc.
 
 今回のブログ作成ではなるべく面倒な作業はしたくなかったので（技量がないともいう）、画像の最適化が標準サポートされておりまたその他さまざまな Plugin の利用もできる Gatsby を選択しました。結局 Theme や Starter 作成など多少面倒なことしてるんですけどね。
@@ -107,37 +107,6 @@ Gatsby Theme には [Shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and
 ### テスト
 
 今回は Vitest と Playwright で簡単なテストを実行するようにしました。動作確認用のプロジェクトを用意したおかげで e2e テストも書けますね。
-
-### リリース
-
-Gatsby Theme は npm パッケージとして公開するためリリース作業が必要です。
-
-今回は GitHub の[自動生成リリース ノート](https://docs.github.com/ja/repositories/releasing-projects-on-github/automatically-generated-release-notes)でリリースノートを自動生成しつつ、以下のような Github Action で npm の公開まで行えるようにしてみました。
-
-```yaml
-name: Publish
-on:
-  release:
-    types: [created]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: ".nvmrc"
-          registry-url: "https://registry.npmjs.org"
-          scope: "@zzzkan"
-      - name: Install dependencies
-        run: yarn install --immutable
-      - name: Publish package to npmjs
-        run: npm publish --access public
-        working-directory: ./package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-```
 
 ### Starter
 
