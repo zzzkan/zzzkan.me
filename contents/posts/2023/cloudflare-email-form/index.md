@@ -20,13 +20,13 @@ Cloudflare はドメインのカスタムメールアドレスから問い合わ
 
 ### 設定方法
 
-1. ダッシュボード > Web サイトからドメインを追加する。
+1. ダッシュボード > Web サイトからドメインを追加
    ![Webサイトの設定画面](./add-domain.png)
-   ちなみに[Cloudflare Registrar](https://www.cloudflare.com/ja-jp/products/registrar/)は原価でドメインを提供していてこれまたおすすめです。
-2. ドメイン > メールアドレス > Cloudflare Email Routing でいろいろ設定する。
+   ちなみに[Cloudflare Registrar](https://www.cloudflare.com/ja-jp/products/registrar/)は原価でドメインを提供していてこれまたおすすめ
+2. ドメイン > メールアドレス > Cloudflare Email Routing でいろいろ設定
    ![Cloudflare Email Routingの設定画面](cloudflareemailrouting.png)
-   基本的に指示通りに設定していくだけです。これでカスタムメールアドレスの受信設定は完了です。
-3. （送信設定まで行う場合）カスタムメールアドレスと使用するメールサービスの紐づけを行います。
+   基本的に指示通りに設定していくだけ
+3. （送信設定まで行う場合）カスタムメールアドレスと使用するメールサービスを紐づけ
 
 ## 問い合わせフォーム
 
