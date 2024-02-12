@@ -33,58 +33,63 @@ const AboutPage: React.FC = () => {
       </Heading>
       <UnorderedList marginBottom={3}>
         <ListItem>
-          GitHub:{" "}
           <Link
             href={"https://github.com/zzzkan"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            @zzzkan
+            GitHub
           </Link>
         </ListItem>
         <ListItem>
-          X (Twitter):{" "}
           <Link
             href={"https://twitter.com/_zzzkan"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            @_zzzkan
+            X (Twitter)
           </Link>
         </ListItem>
         <ListItem>
-          Zenn:{" "}
+          <Link
+            href={"https://bsky.app/profile/zzzkan.me"}
+            target={"_blank"}
+            rel={"noreferrer"}
+            color={"tint"}
+          >
+            Bluesky
+          </Link>
+        </ListItem>
+        <ListItem>
           <Link
             href={"https://zenn.dev/zzzkan"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            @zzzkan
+            Zenn
           </Link>
         </ListItem>
         <ListItem>
-          Qiita:{" "}
           <Link
             href={"https://qiita.com/zzzkan"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            @zzzkan
+            Qiita
           </Link>
         </ListItem>
         <ListItem>
-          しずかなインターネット:{" "}
           <Link
             href={"https://sizu.me/zzzkan"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            @zzzkan
+            しずかなインターネット
           </Link>
         </ListItem>
       </UnorderedList>
@@ -118,44 +123,6 @@ const AboutPage: React.FC = () => {
               （スターター）
             </ListItem>
           </UnorderedList>
-        </ListItem>
-      </UnorderedList>
-      <Heading as={"h2"} size={"lg"} marginBottom={3}>
-        My fave 🐇
-      </Heading>
-      <UnorderedList>
-        <ListItem>
-          <Link
-            href={"https://twitter.com/komamanju"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            @komamanju
-          </Link>
-          （元気でかわいい）
-        </ListItem>
-        <ListItem>
-          <Link
-            href={"https://twitter.com/taremimi_ch"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            @taremimi_ch
-          </Link>
-          （よく食べててかわいい）
-        </ListItem>
-        <ListItem>
-          <Link
-            href={"https://twitter.com/5w1iaVZsovhbpJv"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            @5w1iaVZsovhbpJv
-          </Link>
-          （もこもこでかわいい）
         </ListItem>
       </UnorderedList>
       <Divider as={"hr"} marginY={6} />
