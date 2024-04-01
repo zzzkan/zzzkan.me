@@ -62,43 +62,13 @@ const AboutPage: React.FC = () => {
             Bluesky
           </Link>
         </ListItem>
-        <ListItem>
-          <Link
-            href={"https://zenn.dev/zzzkan"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            Zenn
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link
-            href={"https://qiita.com/zzzkan"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            Qiita
-          </Link>
-        </ListItem>
-        <ListItem>
-          <Link
-            href={"https://sizu.me/zzzkan"}
-            target={"_blank"}
-            rel={"noreferrer"}
-            color={"tint"}
-          >
-            しずかなインターネット
-          </Link>
-        </ListItem>
       </UnorderedList>
       <Heading as={"h2"} size={"lg"} marginBottom={3}>
         Works
       </Heading>
       <UnorderedList marginBottom={3}>
         <ListItem>
-          シンプルなブログのためのGatsbyテーマとスターター
+          このブログサイトで使用しているGatsbyテーマとGatsbyスターター
           <UnorderedList>
             <ListItem>
               <Link
@@ -118,7 +88,7 @@ const AboutPage: React.FC = () => {
                 rel={"noreferrer"}
                 color={"tint"}
               >
-                @zzzkan/gatsby-starter-blog"
+                @zzzkan/gatsby-starter-blog
               </Link>
               （スターター）
             </ListItem>
