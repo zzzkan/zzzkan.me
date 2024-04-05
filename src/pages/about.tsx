@@ -21,7 +21,7 @@ const AboutPage: React.FC = () => {
           About
         </Heading>
         <Text marginTop={3}>
-          日本の某メーカーでソフトを作る仕事の人になりました。アルフォートは水色派です。
+          日本の某企業でソフトを作る仕事の人になりました。アルフォートは水色派です。
         </Text>
         <Text>
           I am a software developer in Japan. The sky blue Alfort Chocolate is
