@@ -27,12 +27,12 @@ export const Footer: React.FC<Props> = () => {
             width={60}
             style={{ borderRadius: "50%" }}
           />
-          <div>
+          <Box>
             <Heading as={"div"} fontSize={"lg"} fontWeight={"semibold"}>
               zzzkan
             </Heading>
             <Text fontSize={"sm"}>アルフォートは水色派です。</Text>
-          </div>
+          </Box>
         </HStack>
       </Center>
       <Flex alignItems={"end"}>
