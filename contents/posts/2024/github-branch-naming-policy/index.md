@@ -17,7 +17,6 @@ tags:
 ## Repository Rules（リポジトリルール）
 
 わりと最近、 Branch Protection Rules の後継として[Repository Rules（リポジトリルール）](https://docs.github.com/ja/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#about-rule-layering)というのが使えるようになりました。
-
 この Repository Rules は、後継ということもあって Branch Protection Rules に比べより柔軟なルール設定が可能になっています。
 
 ## ブランチ名を強制してみる
@@ -36,6 +35,4 @@ Repository Rules のおかげでブランチ名を強制するルールが超簡
 
 ## （追記）GitHub Enterprise の場合
 
-GitHub Enterprise ならもっと簡単で[Metadata restrictions](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets?ref=jessehouwing.net#metadata-restrictions)でブランチ名を制限できるようです。
-
-これ他のプランではいまのところ使えないようです（手元の Free プラン環境では見えないの試せない…）。
+GitHub Enterprise ならもっと簡単で[Metadata restrictions](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets?ref=jessehouwing.net#metadata-restrictions)でブランチ名を制限できるようです。これなんですが、他のプランでは今のところ使えないようです（手元が Free プランなので試せない…）。
