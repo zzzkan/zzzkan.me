@@ -1,9 +1,9 @@
 {
   "editor.formatOnSave": true,
-  "textlint.autoFixOnSave": true,
   "files.associations": {
     "LICENSE": "plaintext",
-    "static/_headers": "plaintext"
+    "static/_headers": "plaintext",
+    "*.mdx": "markdown"
   },
   "[plaintext]": {
     "editor.formatOnSave": false
