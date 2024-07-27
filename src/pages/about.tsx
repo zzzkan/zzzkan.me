@@ -99,7 +99,10 @@ const AboutPage: React.FC = () => {
         Contact
       </Heading>
       <Text>
-        「info@zzzkan.me」まで連絡ください（返信は別のアドレスから行う場合があります）。X等のSNSは一定期間見ないことがあり返信が遅れることがあります。
+        <Link href={"mailto:info@zzzkan.me"} color={"tint"}>
+          info@zzzkan.me
+        </Link>
+        まで連絡ください（返信は別のアドレスから行う場合があります）。X等のSNSは一定期間見ないことがあり返信が遅れることがあります。
       </Text>
     </Layout>
   );
