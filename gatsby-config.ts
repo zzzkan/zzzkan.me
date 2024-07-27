@@ -100,7 +100,6 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    "gatsby-plugin-twitter",
   ],
 };
 
