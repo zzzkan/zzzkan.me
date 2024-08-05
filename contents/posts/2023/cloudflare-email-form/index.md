@@ -11,9 +11,7 @@ tags:
   - Cloudflare
 ---
 
-追記：
-
-MailChannels を用いる方法は現在では非推奨になっています。
+追記：MailChannels を用いる方法は現在では非推奨になっています。
 
 > MailChannels have deprecated the free email sending API for Cloudflare Workers and will begin rejecting API calls from June 30th 2024 at 1700 PDT: https://support.mailchannels.com/hc/en-us/articles/26814255454093-End-of-Life-Notice-Cloudflare-Workers
 
