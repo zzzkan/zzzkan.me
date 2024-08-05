@@ -2,12 +2,23 @@
 slug: cloudflare-email-form
 title: Cloudflareはメールアドレスからフォームまで無料で簡単に作れて便利
 publishedDate: 2023-05-26
+updatedDate: 2024-08-05
 featuredImage: "./brett-jordan-LPZy4da9aRo-unsplash.jpg"
 featuredImageAlt: "青と白のメールアイコンの写真"
 featuredImageCreditText: "Brett Jordan"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/LPZy4da9aRo"
 tags:
   - Cloudflare
+---
+
+追記：
+
+MailChannels を用いる方法は現在では非推奨になっています。
+
+> MailChannels have deprecated the free email sending API for Cloudflare Workers and will begin rejecting API calls from June 30th 2024 at 1700 PDT: https://support.mailchannels.com/hc/en-us/articles/26814255454093-End-of-Life-Notice-Cloudflare-Workers
+
+現時点（2024/08/05）でメール送信は[Resend](https://resend.com/)を用いる方法がおすすめです。
+
 ---
 
 Cloudflare はドメインのカスタムメールアドレスから問い合わせフォームまでを簡単にしかも無料で作ることができてすごいです。最近、問い合わせフォームを設置してみようとふと思い立ったのでやってみました。
