@@ -2,7 +2,7 @@
 slug: csharp-value-equality
 title: C#でクラスあるいは構造体に値の等価性を定義する
 publishedDate: 2023-01-14
-updatedDate: 2023-03-05
+updatedDate: 2025-02-07
 featuredImage: "./hitesh-choudhary-pMnw5BSZYsA-unsplash.jpg"
 featuredImageAlt: "コードの図で付箋を示す笑みを浮かべて男の写真"
 featuredImageCreditText: "Hitesh Choudhary"
@@ -26,11 +26,11 @@ public record Point(int x, int y);
 
 （完）
 
-[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 かから）で、 [C# 9 は.NET 5 以降が必要](https://learn.microsoft.com/ja-jp/dotnet/csharp/language-reference/configure-language-version)です。そのため、たとえば.NET Framework を使っているプロジェクトでは基本的にレコードは使えません。悲しい。
+[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 かから）で、たとえば .NET Framework なプロジェクトでは、基本的には、レコードを使うことができないんだって。悲しい。
 
 ## Visual Studio で自動実装する
 
-レコード型使えない民はどうしたらよいのでしょうか。Visual Studio で必要な実装を自動実装しましょう。ここでは Visual Studio 2022 を使用した場合を示します。例えば以下のクラスについて考えます。
+レコード型使えない民はどうしたらよいのでしょうか。Visual Studio で自動実装しましょう。ここでは Visual Studio 2022 を使用した場合を示します。例えば以下のクラスについて考えます。
 
 ```cs
 public class Point
@@ -52,6 +52,8 @@ public class Point
 まず、等価性の定義に用いるメンバーへチェックを入れます。今回の場合 X および Y いずれの値も一致しているときを"等しい"としたいためどちらにもチェックを入れています。次に、「`IEquatable<T>{:txt}`を実装する」は文字通りの意味ですがこれは基本的にチェックを入れて良いと思ってます。最後に、「演算子を生成する」も文字通りの意味ですがこれもたいていの場合（とくに immutable なクラスや構造体の場合）はチェックを入れて良いと思っています。チェックを入れなかった場合`Equals{:txt}`と`=={:txt}`で結果が変わることになります。
 
 以上を行うと以下のように自動実装されます。
+
+（追記：.NET Framework な話をしているのになぜか Null 許容参照型が有効になってるの許して）
 
 ```cs {1, 11-36}
 public class Point : IEquatable<Point?>
@@ -114,7 +116,7 @@ public class Point
 
 ### IEquatable\<T\>の実装
 
-まずは型固有の`Equals{:txt}`を定義するため[`IEquatable<T>{:txt}`](https://learn.microsoft.com/ja-jp/dotnet/api/system.iequatable-1)を実装します。すべてはここからはじまります。
+まずは型固有の`Equals{:txt}`を定義するため[`IEquatable<T>{:txt}`](https://learn.microsoft.com/ja-jp/dotnet/api/system.iequatable-1)を実装いてみます。
 
 ```cs {1, 11-16}
 public class Point : IEquatable<Point?>
@@ -268,9 +270,7 @@ public static bool operator ==(Point? left, Point? right)
 
 個人的には思わず書いてしまいそうになるのですがこれは`StackOverflowException{:txt}`になります。ようするに無限ループになります。演算子の中で演算子を呼んでいるのでまあよく考えたら当然ですね。
 
-個人的には単に null チェックをしたいだけなのであれば演算子は使わないほうが無難な気もしています。こういとき昔ながらの方法は`ReferenceEquals(hoge, null){:cs}`になるんですがなんかちょっといけてない気がします。最近の C#であれな[パターンマッチング](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/functional/pattern-matching)が使えるので`hoge is null{:cs}`とスマートに書けます。
-
-やっぱりレコードもあってパターンマッチングもある最新の C#を使うべき！
+個人的には単に null チェックをしたいだけなのであれば演算子は使わないほうが無難な気もしています。こういとき昔ながらの方法は`ReferenceEquals(hoge, null){:cs}`になるんですがなんかちょっといけてない気がします。最近の C#であれな`hoge is null{:cs}`と書けて嬉しいです。
 
 ## 参考
 
