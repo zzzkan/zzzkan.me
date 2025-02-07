@@ -22,7 +22,7 @@ GitHub には、`main{:txt}` などの重要なブランチに対して[保護�
 
 ## GitHub Action もルールの影響下にある
 
-たとえば、リリース作業を自動化するため package.json などバージョンを管理しているファイルを更新し `main{:txt}` へ push するような GitHub Action を実行したいとします。このとき保護ルールでマージ前に PR を必須にしていると、
+たとえば、リリース作業を自動化するため package.json などバージョンを管理しているファイルを更新し `main{:txt}` へ push するような GitHub Action を実行したいとします。このとき保護ルールでマージ前に PR を必須にしているとこんな感じでエラーになります。
 
 ```shell
 remote: error: GH013: Repository rule violations found for refs/heads/main.
@@ -36,19 +36,19 @@ error: failed to push some refs to ******
 Error: Process completed with exit code 1.
 ```
 
-こんな感じでエラーになります。まあ当然といえば当然ですね。
+まあ当然といえば当然ですね。
 
 ## バイパスすればいい
 
-保護ルール（Repository Rules）では、ルールをバイパスする対象を指定することができます。
+保護ルール（Repository Rules）では、ルールをバイパスする対象を指定できます。
 
 ![バイパスリスト](./bypass-list.png)
 
-ここでは、2024/12 現在残念ながら GitHub Action を指定することはできません。ただ、よくよく見ていくと Repository admin といった Role に加えて、**Deploy Keys** や リポジトリにインストールされている**GitHub App** を指定できることがわかります。こいつらが使えそうです。
+ここでは、2024/12 現在残念ながら GitHub Action は指定できません。ただ、よく見ていくと Repository admin といった Role に加えて、**Deploy Keys** や リポジトリにインストールされている**GitHub App** を指定できることがわかります。こいつらが使えそうです。
 
 ### Deploy Key
 
-Deploy Key というのは、
+Deploy Key とは以下のようなものです。
 
 > デプロイ キーは、単一のリポジトリへのアクセス権を付与する SSH キーです。 GitHub は個人アカウントの代わりに、リポジトリに直接キーのパブリックな部分をアタッチし、キーのプライベートな部分はサーバーに残ります。
 
@@ -60,13 +60,13 @@ Deploy Key というのは、
 ssh-keygen -t ed25519 -C ""
 ```
 
-途中パスフレーズの入力が求められますが、
+途中パスフレーズの入力が求められます。
 
 ```shell
 Enter passphrase (empty for no passphrase):
 ```
 
-ここでは**何も設定せずにそのまま Enter で進みます**。（最初パスフレーズ設定してしまって「Permission denied (publickey).」になって軽くはまってしまった。ちなみに、[actions/checkout の issue](https://github.com/actions/checkout/issues/271)とか見てても空でやるしかないはず）
+ここでは**何も設定せずにそのまま Enter で進みます**。最初パスフレーズ設定してしまって「Permission denied (publickey).」になって軽くはまってしまった。
 
 次に公開鍵をリポジトリの Deploy Key に登録します。このとき、今回は Push もしたいので必ず Allow write access にチェックを入れます。これで Deploy Key としての登録は完了です。
 
@@ -104,21 +104,19 @@ jobs:
 
 ### GitHub Apps
 
-GitHub Apps というのは、
+GitHub Apps というのは以下のようなものです。
 
 > GitHub Apps は、GitHub の機能を拡張するツールです。 GitHub Apps を使うと、GitHub で、issue を開く、pull request にコメントする、プロジェクトを管理する、といったことを行うことができます。
 
 [GitHub Apps の概要 - GitHub Docs](https://docs.github.com/ja/apps/overview)
 
-ということで、GitHub でなんかいろいろできるやつです。でこの GitHub Apps による認証で GitHub Actions を実行することができます。独自の GitHub Apps を作るのは、そんなに難しくなくて、GitHub アカウントの Settings > Developer Settings > GitHub Apps > New GitHub App から必要な項目を埋めるだけです。
+ということで、GitHub でなんかいろいろできるやつです。でこの GitHub Apps による認証で GitHub Actions を実行できます。独自の GitHub Apps を作るのは、そんなに難しくなくて、GitHub アカウントの Settings > Developer Settings > GitHub Apps > New GitHub App から必要な項目を埋めるだけです。
 
-ポイントとしては、
+ポイントは以下です。
 
 - Homepage URL はリポジトリとか GitHub アカウントとか適当な URL で別にいい
 - Webhook URL は Active のチェックボックスを外せば必須ではなくなる
 - Permissions は必要最低限の権限を設定しておく（今回は push までするので Contents に Read & Write を設定）
-
-です。
 
 作成すると、引き続き設定画面（General）が表示されるので、AppID と秘密鍵を生成して控えておきます。また、このタイミングで Display information という GitHub App のアイコンを設定する項目が出てくるので好きなアイコンを設定してくのがおすすめ！
 
@@ -172,7 +170,7 @@ jobs:
 
 ## まとめ
 
-ということで Deploy Key でも GitHub App でもどちらでも保護ブランチに対して直 push することができました。
+ということで Deploy Key でも GitHub App でもどちらでも保護ブランチに対して直 push できました。
 
 どっちがいいのかというところまで考えると、**楽なのは圧倒的に Deploy Key** だと思います。`ssh-keygen{:txt}` して公開鍵と秘密鍵を設定するだけですし。一方で、Deploy Key を作ろうとすると以下のような表示を目にします。
 
@@ -180,4 +178,4 @@ jobs:
 
 GitHub 的には GitHub Apps を推しているみたいです。GitHub Apps はアクセス権限を細かく柔軟に設定できるのでセキュリティ的に良いはずです。また、Deploy Key はパスフレーズが設定できないはずなので、サーバーが侵害されるとキーに簡単にアクセスされる恐れが一応あります。
 
-あとは各プロジェクトのポリシー次第かなと思います。私は好きなアイコンを設定できるから GitHub App 作るのが良いと思います！！！
+あとは各プロジェクトのポリシー次第かなと思います。私は好きなアイコンを設定できるから GitHub App 作るのが良いと思います！

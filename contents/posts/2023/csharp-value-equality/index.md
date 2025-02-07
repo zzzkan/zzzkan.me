@@ -26,7 +26,7 @@ public record Point(int x, int y);
 
 （完）
 
-[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 かから）で、たとえば .NET Framework なプロジェクトでは、基本的には、レコードを使うことができないんだって。悲しい。
+[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 から）なので、たとえば .NET Framework なプロジェクトでは（基本的には）レコードを使うことができない…悲しい。
 
 ## Visual Studio で自動実装する
 
