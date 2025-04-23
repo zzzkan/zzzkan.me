@@ -2,7 +2,6 @@
 slug: csharp-value-equality
 title: C#でクラスあるいは構造体に値の等価性を定義する
 publishedDate: 2023-01-14
-updatedDate: 2025-02-07
 featuredImage: "./hitesh-choudhary-pMnw5BSZYsA-unsplash.jpg"
 featuredImageAlt: "コードの図で付箋を示す笑みを浮かべて男の写真"
 featuredImageCreditText: "Hitesh Choudhary"
@@ -26,11 +25,11 @@ public record Point(int x, int y);
 
 （完）
 
-[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 から）なので、たとえば .NET Framework なプロジェクトでは（基本的には）レコードを使うことができない…悲しい。
+[レコード](https://learn.microsoft.com/ja-jp/dotnet/csharp/fundamentals/types/records)便利ですね。ただ、レコードが導入されたのは C# 9 から（`record struct{:txt}`は C# 10 から）なので、昔ながらのプロジェクトでは使えないことが多そうです。
 
 ## Visual Studio で自動実装する
 
-レコード型使えない民はどうしたらよいのでしょうか。Visual Studio で自動実装しましょう。ここでは Visual Studio 2022 を使用した場合を示します。例えば以下のクラスについて考えます。
+レコード型使えない民はどうしたらよいのでしょうか。昔ながらの方法で実装が必要ですが、Visual Studio で自動実装すると楽です。ここでは Visual Studio 2022 を使用した場合を示します。例えば以下のクラスについて考えます。
 
 ```cs
 public class Point
@@ -49,14 +48,12 @@ public class Point
 
 ![Visual Studio 2022スクリーンショット](./visual-studio-2022-screenshot.png)
 
-まず、等価性の定義に用いるメンバーへチェックを入れます。今回の場合 X および Y いずれの値も一致しているときを"等しい"としたいためどちらにもチェックを入れています。次に、「`IEquatable<T>{:txt}`を実装する」は文字通りの意味ですがこれは基本的にチェックを入れて良いと思ってます。最後に、「演算子を生成する」も文字通りの意味ですがこれもたいていの場合（とくに immutable なクラスや構造体の場合）はチェックを入れて良いと思っています。チェックを入れなかった場合`Equals{:txt}`と`=={:txt}`で結果が変わることになります。
+まず、等価性の定義に用いるメンバーへチェックを入れます。今回の場合 X および Y いずれの値も一致しているときを"等しい"としたいためどちらにもチェックを入れています。次に、「`IEquatable<T>{:txt}`を実装する」は文字通りの意味ですがこれは基本的にチェックを入れたら良いと思います。最後に、「演算子を生成する」も文字通りの意味ですがこれもたいていの場合（とくに immutable なクラスや構造体の場合）はチェックを入れて良いと思っています。チェックを入れなかった場合`Equals{:txt}`と`=={:txt}`で結果が変わることになります。
 
 以上を行うと以下のように自動実装されます。
 
-（追記：.NET Framework な話をしているのになぜか Null 許容参照型が有効になってるの許して）
-
 ```cs {1, 11-36}
-public class Point : IEquatable<Point?>
+public class Point : IEquatable<Point>
 {
     public int X {get;}
     public int Y { get; }
@@ -66,12 +63,12 @@ public class Point : IEquatable<Point?>
         Y = y;
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         return Equals(obj as Point);
     }
 
-    public bool Equals(Point? other)
+    public bool Equals(Point other)
     {
         return other is not null &&
                X == other.X &&
@@ -83,12 +80,12 @@ public class Point : IEquatable<Point?>
         return HashCode.Combine(X, Y);
     }
 
-    public static bool operator ==(Point? left, Point? right)
+    public static bool operator ==(Point left, Point right)
     {
         return EqualityComparer<Point>.Default.Equals(left, right);
     }
 
-    public static bool operator !=(Point? left, Point? right)
+    public static bool operator !=(Point left, Point right)
     {
         return !(left == right);
     }
@@ -119,7 +116,7 @@ public class Point
 まずは型固有の`Equals{:txt}`を定義するため[`IEquatable<T>{:txt}`](https://learn.microsoft.com/ja-jp/dotnet/api/system.iequatable-1)を実装いてみます。
 
 ```cs {1, 11-16}
-public class Point : IEquatable<Point?>
+public class Point : IEquatable<Point>
 {
     public int X {get;}
     public int Y { get; }
@@ -129,7 +126,7 @@ public class Point : IEquatable<Point?>
         Y = y;
     }
 
-    public bool Equals(Point? other)
+    public bool Equals(Point other)
     {
         return other is not null &&
                X == other.X &&
@@ -145,7 +142,7 @@ public class Point : IEquatable<Point?>
 型固有の`Equals{:txt}`は定義できましたが現状`Object.Equals{:txt}`は考慮されていません。たとえば、`new Point(1, 2).Equals((object)new Point(1, 2)){:cs}`は現状では False となります。そこで`Object.Equals{:txt}`をオーバーライドします。
 
 ```cs {11-14}
-public class Point : IEquatable<Point?>
+public class Point : IEquatable<Point>
 {
     public int X {get;}
     public int Y { get; }
@@ -155,12 +152,12 @@ public class Point : IEquatable<Point?>
         Y = y;
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         return Equals(obj as Point);
     }
 
-    public bool Equals(Point? other)
+    public bool Equals(Point other)
     {
         return other is not null &&
                X == other.X &&
@@ -176,7 +173,7 @@ public class Point : IEquatable<Point?>
 次にやらなければならないのが`Object.GetHashCode{:txt}`のオーバーライドです。これは等しい 2 つのオブジェクトは等しいハッシュコードを返す必要があるためです。現状では`Dictionary<Point,TValue>{:txt}`なんかは意図した動作にならないです。
 
 ```cs {23-26}
-public class Point : IEquatable<Point?>
+public class Point : IEquatable<Point>
 {
     public int X {get;}
     public int Y { get; }
@@ -186,12 +183,12 @@ public class Point : IEquatable<Point?>
         Y = y;
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         return Equals(obj as Point);
     }
 
-    public bool Equals(Point? other)
+    public bool Equals(Point other)
     {
         return other is not null &&
                X == other.X &&
@@ -210,7 +207,7 @@ public class Point : IEquatable<Point?>
 最後に必要に応じて演算子`=={:txt}`, `!={:txt}`をオーバーロードします。現状では`Equals{:txt}`と`=={:txt}`で動作が異なります。
 
 ```cs {28-36}
-public class Point : IEquatable<Point?>
+public class Point : IEquatable<Point>
 {
     public int X {get;}
     public int Y { get; }
@@ -220,12 +217,12 @@ public class Point : IEquatable<Point?>
         Y = y;
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         return Equals(obj as Point);
     }
 
-    public bool Equals(Point? other)
+    public bool Equals(Point other)
     {
         return other is not null &&
                X == other.X &&
@@ -237,12 +234,12 @@ public class Point : IEquatable<Point?>
         return HashCode.Combine(X, Y);
     }
 
-    public static bool operator ==(Point? left, Point? right)
+    public static bool operator ==(Point left, Point right)
     {
         return EqualityComparer<Point>.Default.Equals(left, right);
     }
 
-    public static bool operator !=(Point? left, Point? right)
+    public static bool operator !=(Point left, Point right)
     {
         return !(left == right);
     }
@@ -261,7 +258,7 @@ C#には null チェックを行う方法がいくつかあります。よく使
 
 ```cs
 ...
-public static bool operator ==(Point? left, Point? right)
+public static bool operator ==(Point left, Point right)
 {
     return !(left == null) && left.Equals(right);
 }
@@ -270,7 +267,7 @@ public static bool operator ==(Point? left, Point? right)
 
 個人的には思わず書いてしまいそうになるのですがこれは`StackOverflowException{:txt}`になります。ようするに無限ループになります。演算子の中で演算子を呼んでいるのでまあよく考えたら当然ですね。
 
-個人的には単に null チェックをしたいだけなのであれば演算子は使わないほうが無難な気もしています。こういとき昔ながらの方法は`ReferenceEquals(hoge, null){:cs}`になるんですがなんかちょっといけてない気がします。最近の C#であれな`hoge is null{:cs}`と書けて嬉しいです。
+個人的には単に null チェックをしたいだけなのであれば演算子は使わないほうが無難な気もしています。こういとき昔ながらの方法は`ReferenceEquals(hoge, null){:cs}`になるんですがなんかちょっといけてない気がします。最近の C#は`hoge is null{:cs}`と書けて嬉しいです。
 
 ## 参考
 
