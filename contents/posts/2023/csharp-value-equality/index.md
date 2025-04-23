@@ -7,7 +7,7 @@ featuredImageAlt: "コードの図で付箋を示す笑みを浮かべて男の�
 featuredImageCreditText: "Hitesh Choudhary"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/pMnw5BSZYsA"
 tags:
-  - C Sharp
+  - C#
   - .NET
 ---
 

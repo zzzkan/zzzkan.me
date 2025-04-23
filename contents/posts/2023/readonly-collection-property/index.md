@@ -7,7 +7,7 @@ featuredImageAlt: "車の模型のコレクション"
 featuredImageCreditText: "Karen Vardazaryan"
 featuredImageCreditLink: "https://unsplash.com/ja/%E5%86%99%E7%9C%9F/%E3%83%A9%E3%83%83%E3%82%AF%E3%81%AE%E3%83%80%E3%82%A4%E3%82%AD%E3%83%A3%E3%82%B9%E3%83%88%E3%82%AB%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-JBrfoV-BZts"
 tags:
-  - C Sharp
+  - C#
   - .NET
 ---
 

@@ -1,14 +1,15 @@
 ---
 slug: verify-tests
-title: C#でスナップショットテストがしたい（Verify）
+title: C#でスナップショットテストがしたい（VerifyTests/Verify）
 publishedDate: 2023-12-26
 updatedDate: 2024-05-19
 featuredImage: "./verify-tests-firefly.jpg"
 featuredImageAlt: "騎士がソフトウェアテストしているイメージ"
 tags:
-  - Test
-  - C Sharp
+  - C#
   - .NET
+  - Snapshot Testing
+  - VerifyTests
 ---
 
 この投稿は[C#アドベントカレンダー 2023](https://qiita.com/advent-calendar/2023/csharplang)（シリーズ 2）の 25 日目 🎄 の記事です。C#でスナップショットテストを簡単に始められるライブラリ[VerifyTests/Verify](https://github.com/VerifyTests/Verify)について紹介します。
