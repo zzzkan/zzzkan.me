@@ -2,7 +2,6 @@
 slug: readonly-collection-property
 title: C#でコレクションを読み取り専用で公開するには結局どうしたらいい？
 publishedDate: 2023-11-06
-updatedDate: 2023-11-29
 featuredImage: "./karen-vardazaryan-JBrfoV-BZts-unsplash.jpg"
 featuredImageAlt: "車の模型のコレクション"
 featuredImageCreditText: "Karen Vardazaryan"
@@ -161,22 +160,15 @@ public void Test()
 
 とは言っても`IReadOnlyList<T>`を実装した具象クラスが必ず`ICollection<T>`を実装している保証は（基本的に）ないわけで、これは普通は**やっちゃいけない類の操作**になると思います。なので、こういうケースについてはそこまで神経質にならなくてもいいのかなと個人的には思います。結局、リフレクションを使えば何でもできてしまうわけだし。
 
-## 結局どうすれば…？
+## パフォーマンス
 
-じゃあよりベターなのは何かというのを考えたいんですが…まあなんでもいいんじゃないんですか（投げやり）。基本的には以下のような選択肢になると思うので状況に合わせて都度選択するしかない…のか？
+今のところ、`IReadOnlyList<T>`も`ReadOnlyCollection<T>`もどっちもよさそうな感じがします。`IReadOnlyList<T>`のほうが替えが効くのでまあこっちかなという感じです。
 
-- `ReadOnlyCollection<T>`として公開
-- `IReadOnlyList<T>`として公開
-  - 実体を`ReadOnlyCollection<T>`にもできる
-- 自作の読み取り専用コレクションを作ってもいいのかもしれない
+でここからは速度も気にしてみます。一般的にインターフェイスを介するとパフォーマンスが落ちるみたいです。これは仮想呼び出しのオーバーヘッドがあるからであったりインライン化できないであったりまあいろいろあると思います。
 
-## パフォーマンスが気になる場合
+### じゃあ ReadOnlyCollection？
 
-たとえばインターフェイスを介すると一般的にパフォーマンスが落ちます。これは仮想呼び出しのオーバーヘッドがあるからであったりインライン化できないであったりまあいろいろあると思います。
-
-### ReadOnlyCollection は？
-
-そうすると具象クラスである`ReadOnlyCollection<T>`で公開した方が良いのではという話が出てきそうです。ただ、実はパフォーマンスはよくならなかったりします。
+そうすると具象クラスである`ReadOnlyCollection<T>`で公開した方が良いのではという話が出てきそうです。ただ、実はパフォーマンスはよくならないようです。
 
 | Method                      |     Mean |    Error |   StdDev |
 | --------------------------- | -------: | -------: | -------: |
@@ -222,7 +214,7 @@ public int IReadOnlyListBenchmark()
 }
 ```
 
-これは`ReadOnlyCollection<T>`の内部実装が`IList<T>`を介した呼び出しになっているのが大きな原因です。[ReadOnlyCollection のリファレンス](https://github.com/microsoft/referencesource/blob/51cf7850defa8a17d815b4700b67116e3fa283c2/mscorlib/system/collections/objectmodel/readonlycollection.cs#L23)を見てみると次のようになっています。
+これは`ReadOnlyCollection<T>`の内部実装が`IList<T>`を介した呼び出しになっているのが大きな原因のようです。[ReadOnlyCollection のリファレンス](https://github.com/microsoft/referencesource/blob/51cf7850defa8a17d815b4700b67116e3fa283c2/mscorlib/system/collections/objectmodel/readonlycollection.cs#L23)を見てみると次のようになっています。
 
 ```csharp
 public class ReadOnlyCollection<T>: IList<T>, IList, IReadOnlyList<T>
