@@ -77,7 +77,7 @@ DateTime_4 [ThreadId] INFO MyApp.MyClass - The value 15 is greater than 10.
 DateTime_5 [ThreadId] DEBUG MyApp.MyClass - Calculation result: 20
 ```
 
-これでスナップショットから実行タイミングに依存する要素を排除できました。簡単！このスナップショットを基にす、ログファイルの内純粋な操作ログに対してのみスナップショットテストが実行できるようになりました。
+これでスナップショットから実行タイミングに依存する要素を排除できました。簡単！このスナップショットを基にすることで、ログファイルの内純粋な操作ログに対してのみスナップショットテストが実行できるようになりました。
 
 VerifyTests めちゃくちゃ便利です。
 
