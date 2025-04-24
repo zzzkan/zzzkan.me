@@ -1,8 +1,8 @@
 ---
 slug: log-snapshote-testing
 title: VerifyTestsでログに対してスナップショットテストする
-publishedDate: 2025-04-23
-tags:
+publishedDate: 2025-04-25
+tags
   - C#
   - .NET
   - Snapshot Testing
