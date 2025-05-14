@@ -2,7 +2,6 @@ import React from "react";
 import { HeadFC } from "gatsby";
 import {
   Box,
-  Divider,
   Heading,
   Link,
   ListItem,
@@ -21,7 +20,7 @@ const AboutPage: React.FC = () => {
           About
         </Heading>
         <Text marginTop={3}>
-          日本の某企業でソフトを作る仕事の人になりました。アルフォートは水色派です。
+          ソフトを作る仕事の人になりました。アルフォートは水色派です。
         </Text>
         <Text>
           I am a software developer in Japan. The sky blue Alfort Chocolate is
@@ -44,12 +43,12 @@ const AboutPage: React.FC = () => {
         </ListItem>
         <ListItem>
           <Link
-            href={"https://twitter.com/_zzzkan"}
+            href={"https://twitter.com/zzzkanme"}
             target={"_blank"}
             rel={"noreferrer"}
             color={"tint"}
           >
-            X (旧Twitter)
+            X
           </Link>
         </ListItem>
         <ListItem>
@@ -131,9 +130,7 @@ export const Head: HeadFC = ({ location }) => {
     <Seo
       path={pathname}
       title={"About"}
-      description={
-        "zzzkanとこのサイトについて説明するページです。zzzkanはソフトを作る仕事の人です。アルフォートは水色派です。"
-      }
+      description={"アルフォートは水色派です。"}
     />
   );
 };

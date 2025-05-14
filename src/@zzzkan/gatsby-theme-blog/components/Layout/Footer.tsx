@@ -23,13 +23,13 @@ export const Footer: React.FC<Props> = () => {
         <HStack>
           <StaticImage
             src="../../../../../contents/images/icon.png"
-            alt="zzzkan"
+            alt="zzzkan.me"
             width={60}
             style={{ borderRadius: "50%" }}
           />
           <Box>
             <Heading as={"div"} fontSize={"lg"} fontWeight={"semibold"}>
-              zzzkan
+              zzzkan.me
             </Heading>
             <Text fontSize={"sm"}>アルフォートは水色派です。</Text>
           </Box>
@@ -38,7 +38,7 @@ export const Footer: React.FC<Props> = () => {
       <Flex alignItems={"end"}>
         <Spacer />
         <Text fontSize={"sm"}>
-          © 2023 zzzkan, Built with{" "}
+          © 2023 zzzkan.me, Built with{" "}
           <Link
             href={"https://www.gatsbyjs.com/"}
             target={"_blank"}

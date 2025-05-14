@@ -18,18 +18,15 @@ const HomePage: React.FC = () => {
     <Layout>
       <Flex alignItems={"center"} justifyContent={"center"} height={"50vh"}>
         <Box>
-          <Heading as={"h1"} size={"4xl"}>
+          <Heading as={"h1"} size={"4xl"} marginBottom={3}>
             zzzkan.me
           </Heading>
-          <Text fontSize={"sm"} marginBottom={3}>
-            zzzkan's website
-          </Text>
           <Center>
             <HStack spacing={"6"}>
-              <Link as={GatsbyLink} to="/about" color={"tint"} fontSize={"xl"}>
+              <Link as={GatsbyLink} to="/about" color={"tint"} fontSize={"2xl"}>
                 About
               </Link>
-              <Link as={GatsbyLink} to="/blog" color={"tint"} fontSize={"xl"}>
+              <Link as={GatsbyLink} to="/blog" color={"tint"} fontSize={"2xl"}>
                 Blog
               </Link>
             </HStack>
