@@ -19,7 +19,7 @@ tags:
 
 ## VerifyTests
 
-スナップショットテスト行うためのライブラリとして、ここでは [VerifyTests/Verify](https://github.com/VerifyTests/Verify) を使用します。このライブラリ結構よく使われていて、たとえば [dotnet/BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet/blob/f4bfcd67b4ed44996c67785bbc5a1340db6f88ca/docs/articles/contributing/running-tests.md#verify-tests) のテストにも採用されていたりします。後いつの間にか Powered by JetBrains になってる。
+スナップショットテスト行うためのライブラリとして、ここでは [VerifyTests/Verify](https://github.com/VerifyTests/Verify) を使用します。このライブラリ.NET な界隈ではそこそこ？よく使われていて、たとえば [dotnet/BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet/blob/f4bfcd67b4ed44996c67785bbc5a1340db6f88ca/docs/articles/contributing/running-tests.md#verify-tests) のテストにも採用されていたりします。後いつの間にか Powered by JetBrains になってる。
 
 以前記事を書いたこともあるので興味があれば以下もどうぞ。
 
@@ -44,7 +44,7 @@ tags:
 たとえば、日付や時刻をスナップショットから除外するには以下のようにします。
 
 ```cs
-var path = GetLogFilePath();
+string path = GetLogFilePath();
 return VerifyFile(path).ScrubInlineDateTimes("yyyy-MM-dd HH:mm:ss,fff");
 ```
 
@@ -61,7 +61,7 @@ DateTime_5 [1] DEBUG MyApp.MyClass - Calculation result: 20
 日付と時刻が `DateTime_1` などに置き換わっていますね。さらに、スレッド ID も除外したい場合はたとえば以下のようにします。
 
 ```cs
-var path = Path.Combine(CurrentFile.Directory(), "./test.log");
+string path = GetLogFilePath();
 return VerifyFile(path)
     .ScrubInlineDateTimes("yyyy-MM-dd HH:mm:ss,fff")
     .ScrubLinesWithReplace(line => Regex.Replace(line, @"\[\d+\]", "[ThreadId]"));
